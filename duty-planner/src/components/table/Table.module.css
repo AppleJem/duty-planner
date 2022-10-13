@@ -1,0 +1,15 @@
+.mainTable td {
+    border:  1px solid grey;
+    width: 7rem;
+    padding: 0.4em 0.7em;
+}
+
+.mainTable td:nth-child(1) {
+    width:unset;
+}
+
+.mainTable th {
+    border:  1px solid grey;
+    width: 7rem;
+    padding: 0.4em 0.7em;
+}
