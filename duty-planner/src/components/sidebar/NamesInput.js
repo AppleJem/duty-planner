@@ -8,11 +8,11 @@ function NamesInput({ updateNameListHandler }) {
     return <div>
         <div>
             <label htmlFor='namesInput'>Input names in this format: "Alpha, Bravo, Charlie,..."</label>
-            <input id='namesInput' ref={namesInputRef} type="text" placeholder="Alpha, Bravo, Charlie,..."></input>
+            <textarea id='namesInput' ref={namesInputRef} type="text" placeholder="Alpha, Bravo, Charlie,..."></textarea>
             <button onClick={() => { updateNameListHandler(namesInputRef.current.value) }} >Update Name List</button>
         </div>
         <div>
-        
+
         </div>
 
     </div>

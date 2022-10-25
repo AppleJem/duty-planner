@@ -1,4 +1,5 @@
 import { Fragment, useState } from 'react';
+import { useSelector } from 'react-redux';
 import uuid from 'react-uuid';
 
 import TableRow from "./TableRow";
@@ -7,14 +8,13 @@ import styles from "./Table.module.css"
 
 
 function Table() {
+    const timingsInput = useSelector(state=>state.tableSpecs.timingsInput);
+    const numberOfDays = useSelector(state=>state.tableSpecs.days);
+    const headingsInput = useSelector(state=>state.tableSpecs.headingsInput);
 
-    const headingInput = "S1, S2, S3, P1, P2";
-    const timeInput = "1800-2200, 2200-0200, 0200-0600,0600-1000, 1000-1400, 1400-1800";
-    const days=3;
 
-
-    const headings = headingInput.replace(/\s/g,'').split(',');
-    const timings = timeInput.replace(/\s/g,'').split(',');
+    const headings = headingsInput.replace(/\s/g,'').split(',');
+    const timings = timingsInput.replace(/\s/g,'').split(',');
 
 
     const tRows = [];
@@ -23,7 +23,7 @@ function Table() {
     }
 
     const tables = []
-    for (let i=0; i<days;i++) {
+    for (let i=0; i<numberOfDays;i++) {
         tables.push (<table key={uuid()} className={styles.mainTable}>
             <thead>
                 <tr>
