@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 
 import { nameActions } from '../../store/nameSlice';
-import styles from "./SideBar.module.css";
+import styles from "./Namelist.module.css";
 
 function NameList() {
     const dispatch = useDispatch();

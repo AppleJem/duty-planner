@@ -1,0 +1,23 @@
+/* .main-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    height: 100vh;
+    background-color:#1B3143;
+} */
+
+.button-table-menu {
+    z-index: 10;
+}
+
+.main-container {
+    background-color: #1B3143;
+    height: 100vh;
+}
+
+.main-container * {
+    font-family: 'Sora', sans-serif;
+    color: #b2cbe0;
+}

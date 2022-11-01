@@ -55,9 +55,11 @@ table {
 @import url("https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap");
 /* #endregion*/
 
-* {
-  font-family: 'Sora', sans-serif;
-  background-color:#314657;
-  color:#b2cbe0;
+
+
+
+
+.h1 {
+  font-size: 1rem;
 }
 

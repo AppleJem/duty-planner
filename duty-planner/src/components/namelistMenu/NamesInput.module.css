@@ -1,0 +1,33 @@
+.form-control {
+    display:flex;
+    flex-direction: column;
+    grid-row-start: 1;
+    grid-column-start: 1;
+    grid-column-end: 6;
+    /* margin: 0 1rem; */
+    align-items:center;
+
+    margin-top: 2rem;
+}
+
+.form-control label {
+    display:block;
+    margin-bottom: 1rem;
+}
+
+.form-control textarea {
+    background-color: var(--secondary-dark);
+    display:block;
+    margin-bottom:2rem;
+}
+
+.form-control textarea::placeholder {
+    color:var(--text-placeholder);
+}
+
+.update-button {
+    /* max-width: 6rem; */
+
+}
+
+

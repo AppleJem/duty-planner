@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import nameSlice from "./nameSlice";
 import tableSlice from "./tableSlice";
+import menuSlice from "./menuSlice";
 
 const store = configureStore({
     reducer: {
         activeName: nameSlice.reducer,
-        tableSpecs:tableSlice.reducer
+        tableSpecs:tableSlice.reducer,
+        menuStatus: menuSlice.reducer,
     }
 })
 
