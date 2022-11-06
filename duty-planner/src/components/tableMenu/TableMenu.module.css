@@ -1,25 +1,27 @@
-:root {
-    --menu-dark: #58626E;
-}
 
-.grid-container {
+
+/* .grid-container {
     position: fixed;
     top: 0;
     left: 0;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    height: 100vh;
-}
+    height: 100%;
+    z-index:100;
+} */
 
-.main-container {
+.table-container {
     grid-column-start: 1;
     grid-column-end: 6;
+    grid-row-start:1;
+    grid-row-end: span 12;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-auto-rows: min-content;
     /* grid-template-rows: 4rem repeat(10, 3rem); */
     border: 1px solid grey;
-
+    z-index:10;
+    background-color: rgb(23, 23, 23);
 }
 
 .hide-button {
@@ -28,15 +30,6 @@
     justify-self: center;
     border:unset;
     background-color:transparent;
-}
-
-.show-button {
-    position:absolute;
-    left:2rem;
-    top:2rem;
-    z-index:10;
-    background-color:transparent;
-    border:unset;
 }
 
 .menu-title, .form-control {

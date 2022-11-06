@@ -1,3 +1,11 @@
+:root {
+    --menu-dark: #314657;
+    --secondary-dark: #58626E;
+    --text-light: #B2CBE0;
+    --text-bright: #DDE9F2;
+    --text-placeholder: #A1A1A1;
+}
+
 /* .main-container {
     position: fixed;
     top: 0;
@@ -14,10 +22,18 @@
 
 .main-container {
     background-color: #1B3143;
-    height: 100vh;
+    position:fixed;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(11,1fr);
+    align-content:space-between;
+    width:100%;
+    height:100%;
 }
 
 .main-container * {
     font-family: 'Sora', sans-serif;
     color: #b2cbe0;
+
+
 }

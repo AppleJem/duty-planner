@@ -1,5 +1,5 @@
 import menuIcon from '../../assets/buttonIcons/menu-icon.svg'
-import styles from './TableMenu.module.css';
+import styles from './Navbar.module.css'
 
 import { useDispatch } from 'react-redux';
 
@@ -12,7 +12,7 @@ function TableMenuButton() {
         dispatch(menuActions.setActiveMenu('table'))
     }
 
-    return <button className={styles['show-button']} onClick={showTableMenu}>
+    return <button className={styles['table-menu-button']} onClick={showTableMenu}>
         <img src={menuIcon} alt='Open table menu' />
     </button>
 }

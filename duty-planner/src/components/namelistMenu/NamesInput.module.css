@@ -13,9 +13,18 @@
 .form-control label {
     display:block;
     margin-bottom: 1rem;
+    width:60vw;
 }
 
+/* .form-control textarea {
+    background-color: var(--secondary-dark);
+    display:block;
+    margin-bottom:2rem;
+} */
+
 .form-control textarea {
+    width:60vw;
+    min-height:7rem;
     background-color: var(--secondary-dark);
     display:block;
     margin-bottom:2rem;
@@ -27,7 +36,7 @@
 
 .update-button {
     /* max-width: 6rem; */
-
+    margin-bottom:2rem;
 }
 
 

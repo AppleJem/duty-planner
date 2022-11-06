@@ -37,7 +37,7 @@ function NamelistMenu() {
     console.log(menuStatus.showNamelist)
     return <div className={styles['outer-container']}>
         <section className={styles['name-menu']}>
-            <button disabled={nameList.length===0 ? true:false} onClick={toggleNameList} className={styles['toggle-button']}>Toggle</button>
+            <button onClick={toggleNameList} className={styles['toggle-button']}>Toggle</button>
             {menuStatus.showNamelist && <div className={styles['name-list']}>
                 {nameList}
             </div>}
