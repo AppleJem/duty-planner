@@ -12,6 +12,7 @@ import Navbar from './components/navbar/Navbar';
 
 function App() {
   const activeMenu = useSelector(state => state.menuStatus.activeMenu)
+  
 
   return (
     <NameContextProvider>
@@ -19,7 +20,8 @@ function App() {
         <Navbar/>
         <NamelistButton/>
         {activeMenu === 'namelist' && <NamelistMenu />}
-        {activeMenu === 'table' && <TableMenu />}\
+        {activeMenu === 'table' && <TableMenu />}
+
         <Table />
       </div>
 

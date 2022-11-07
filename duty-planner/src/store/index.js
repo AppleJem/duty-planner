@@ -5,7 +5,7 @@ import menuSlice from "./menuSlice";
 
 const store = configureStore({
     reducer: {
-        activeName: nameSlice.reducer,
+        namesConfig: nameSlice.reducer,
         tableSpecs:tableSlice.reducer,
         menuStatus: menuSlice.reducer,
     }

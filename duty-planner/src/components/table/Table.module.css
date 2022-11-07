@@ -4,6 +4,7 @@
     grid-row-start:2;
     grid-row-end: span 11;
     overflow:scroll;
+    padding-bottom:100%;
 }
 
 .main-table {

@@ -10,7 +10,8 @@ const tableSlice = createSlice({
         slots: 0,
         startTime: '',
         endTime: '',
-        slotLength: { hours: 0, minutes: 0 }
+        slotLength: { hours: 0, minutes: 0 },
+        names:'',
     },
     reducers: {
         setTimings: (state, action) => {
@@ -40,6 +41,9 @@ const tableSlice = createSlice({
         setSlotLength: (state, action) => {
             state.slotLength.hours = action.payload.hours;
             state.slotLength.minutes = action.payload.minutes;
+        },
+        setNames: (state,action) => {
+            state.names = action.payload;
         }
     }
 })

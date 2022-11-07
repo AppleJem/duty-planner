@@ -17,8 +17,6 @@
     grid-column-end:6; */
     min-height: 15rem;
     max-height: 45%;
-    overflow-x: hidden;
-    overflow-y:scroll;
 
     display:grid;
     grid-template-columns: repeat(6, 1fr);
@@ -28,13 +26,7 @@
     pointer-events:auto;
 }
 
-.name-list {
-    grid-column-start:1;
-    grid-column-end:6;
-    grid-row-start:1;
-    margin-top:2rem;
-    margin-bottom:2rem;
-}
+
 
 .toggle-button {
     height:3rem;    
@@ -45,33 +37,3 @@
     margin-top:1rem;
 }
 
-
-
-
-/* #region NAMELIST DISPLAY */
-
-.name-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.name-cell {
-    border: 1px solid grey;
-    display: inline-block;
-    padding: 0.7em;
-    width: 10em;
-    text-align: center;
-    margin: 0.2em 0;
-}
-
-.name-cell:hover {
-    filter: brightness(1.2);
-    cursor: pointer;
-}
-
-.name-cell:active {
-    filter: brightness(1.1);
-}
-
-/* #endregion */

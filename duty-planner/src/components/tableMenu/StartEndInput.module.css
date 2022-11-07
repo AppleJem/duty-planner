@@ -1,0 +1,20 @@
+.outer-container {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
+.timing-container {
+    width: 45%;
+}
+
+.timing-container input{
+    box-sizing:border-box;
+    width:100%;
+    border:unset;
+    background-color:var(--menu-dark);
+    height:3em;
+    padding:0 0.5em;
+    border-radius:0.5em;
+}

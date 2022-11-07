@@ -1,31 +1,31 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { nameActions } from '../../store/nameSlice';
 import styles from "./Namelist.module.css";
 
 function NameList() {
+    const {names} = useSelector(state=>state.namesConfig);
     const dispatch = useDispatch();
 
-    //Simulated parsing of user-given namelist
-    const namesInput = "Jem, Luqman, Enrico, Suhail";
-    const names = namesInput.replace(/\s/g, '').split(',');
-    const nameList = [];
+    const parsedNames = names.replace(/\s/g, '').split(',');
 
     function changeActiveNameHandler(newActiveName) {
         //dispatching action to redux to update activeName
+        console.log(newActiveName);
         dispatch(nameActions.setActiveName(newActiveName));
     }
 
-    for (let i = 0; i < names.length; i++) {
-        nameList.push(<p onClick={()=>{changeActiveNameHandler(names[i])}} className={styles['name-cell']}>{names[i]}</p>)
+    const nameListArr = []
+    for (let i = 0; i < parsedNames.length; i++) {
+        nameListArr.push(<p key={parsedNames[i] + i} onClick={() => { changeActiveNameHandler(parsedNames[i]) }} className={styles['name-cell']}>{parsedNames[i]}</p>)
     }
 
-    return <aside>
-        <div className={styles['name-list']}>
-            {nameList}
-        </div>
 
-    </aside>
+
+
+    return <div className={styles['name-list']}>
+        {nameListArr}
+    </div>
 }
 
 export default NameList

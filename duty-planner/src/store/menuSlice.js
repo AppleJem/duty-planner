@@ -5,14 +5,15 @@ const menuSlice = createSlice({
     initialState: {
         activeMenu: "none",
         showNamelist: false,
-        headingsInput: '',
+        headingsInput: 'S1, S2, P1, P2',
         timingsInput: '',
         slotsInput: 6,
         namesInput: '', 
         daysInput: 3,
-        startTimeInput:'00:00',
-        endTimeInput:'00:00',
-        slotLengthInput: {hours:1, minutes:0}
+        startTimeInput:'18:00',
+        endTimeInput:'18:00',
+        slotLengthInput: {hours:1, minutes:0},
+        timingInputMethod: 'auto'
     },
     reducers: {
         setActiveMenu: (state, action) => {
@@ -57,6 +58,9 @@ const menuSlice = createSlice({
         },
         storeSlotLengthMinutes: (state,action) => {
             state.slotLengthInput.minutes = action.payload;
+        },
+        setTimingInputMethod: (state,action) => {
+            state.timingInputMethod = action.payload;
         }
     }
 })

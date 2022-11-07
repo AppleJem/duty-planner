@@ -1,0 +1,27 @@
+.outer-container {
+
+}
+
+.toggle-container {
+    background-color: var(--secondary-dark);
+    height:3rem;
+    border-radius:0.5rem;
+    display:flex;
+    justify-content:space-evenly;
+    align-items:center;
+}
+
+.toggle-option {
+    height:2.4rem;
+    line-height:2.4rem;
+    border-radius:0.4rem;
+    width:47%;
+    text-align: center;
+    color:var(--text-light-muted);
+}
+
+.active {
+    background-color:var(--text-light);
+    color:var(--menu-dark);
+}
+
