@@ -21,9 +21,8 @@ function NameList() {
     nameListArr.push(
         <p key={uuid()}
             onClick={() => { changeActiveNameHandler({ name: '', color: "transparent" }) }}
-            className={styles['name-cell']}
+            className={styles['remover-cell']}
             style={{ backgroundColor: "transparent" }}>
-            Remove
 
         </p >)
     if (!(coloredNames.length === 1 && coloredNames[0].name === '')) {

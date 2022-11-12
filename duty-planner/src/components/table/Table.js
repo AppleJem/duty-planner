@@ -8,6 +8,7 @@ import DayTable from './DayTable';
 
 const Table = React.memo(function () {
     const { timingsInput, days: numberOfDays, headingsInput, slots: numberOfSlots, startTime, endTime } = useSelector(state => state.tableSpecs);
+    const zoom = useSelector(state => state.tableSpecs.zoom);
     const timingInputMethod = useSelector(state => state.menuStatus.timingInputMethod);
 
     const headings = headingsInput.replace(/\s/g, '').split(',');
@@ -32,7 +33,6 @@ const Table = React.memo(function () {
         if (startDate.valueOf() === endDate.valueOf()) {
             slotLength = (24 * 60 * 60 * 1000) / numberOfSlots
         } else {
-            console.log("calculating");
             slotLength = Math.abs(startDate - endDate) / numberOfSlots;
         }
 
@@ -42,7 +42,6 @@ const Table = React.memo(function () {
             timeSlotString = timeSlotString + "-" + getTimeString(startDate);
             timeSlotString = timeSlotString.replace(/:/g, '');
             slotTimings.push(timeSlotString);
-            console.log(timeSlotString);
         }
     } else {
         slotTimings = timingsInput.replace(/\s/g, '').split(',');
@@ -58,7 +57,7 @@ const Table = React.memo(function () {
         )
     }
 
-    return <div id='table' className={styles['tables-container']}>
+    return <div style={{zoom:`${zoom}%`}} id='table' className={styles['tables-container']}>
         {tables}
     </div>
 })

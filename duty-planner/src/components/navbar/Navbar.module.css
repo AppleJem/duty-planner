@@ -24,3 +24,12 @@
     border:unset;
     z-index:10;
 }
+
+.zoom-selector {
+    grid-column: 5/6;
+    grid-row:1/2;
+    border:unset;
+    background-color:transparent;
+    justify-self:start;
+}
+

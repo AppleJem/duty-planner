@@ -13,12 +13,9 @@ const tableSlice = createSlice({
         slotLength: { hours: 0, minutes: 0 },
         names:'',
         tableRef:null,
+        zoom:100,
     },
     reducers: {
-        setTableRef:(state,action) => {
-            console.log(action.payload);
-            state.tableRef = action.payload;
-        },
         setTimings: (state, action) => {
             state.timingsInput = action.payload;
         },
@@ -49,6 +46,9 @@ const tableSlice = createSlice({
         },
         setNames: (state,action) => {
             state.names = action.payload;
+        },
+        setZoom: (state,action) => {
+            state.zoom = action.payload;
         }
     }
 })
