@@ -12,6 +12,7 @@
 
 .main-table {
     margin-bottom:1rem;
+    background-color:var(--table-bg);   
 }
 
 .main-table td {

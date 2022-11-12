@@ -18,19 +18,26 @@ function NameList() {
     }
 
     const nameListArr = []
-    for (let i = 0; i < coloredNames.length; i++) {
-        nameListArr.push(
-            <p key={coloredNames[i]['name'] + uuid()}
-                onClick={() => { changeActiveNameHandler({ name: coloredNames[i]['name'], color: coloredNames[i]['color'] }) }}
-                className={styles['name-cell']}
-                style={{ backgroundColor: coloredNames[i]['color'] }}>
-                {coloredNames[i]['name']}
-            </p>
-        )
+    nameListArr.push(
+        <p key={uuid()}
+            onClick={() => { changeActiveNameHandler({ name: '', color: "transparent" }) }}
+            className={styles['name-cell']}
+            style={{ backgroundColor: "transparent" }}>
+            Remove
+
+        </p >)
+    if (!(coloredNames.length === 1 && coloredNames[0].name === '')) {
+        for (let i = 0; i < coloredNames.length; i++) {
+            nameListArr.push(
+                <p key={coloredNames[i]['name'] + uuid()}
+                    onClick={() => { changeActiveNameHandler({ name: coloredNames[i]['name'], color: coloredNames[i]['color'] }) }}
+                    className={styles['name-cell']}
+                    style={{ backgroundColor: coloredNames[i]['color'] }}>
+                    {coloredNames[i]['name']}
+                </p>
+            )
+        }
     }
-
-
-
 
     return <div className={styles['name-list']}>
         {nameListArr}

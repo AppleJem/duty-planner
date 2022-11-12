@@ -9,13 +9,13 @@
     border-radius: 1000px;
 
     border: unset;
-    background-color:var(--text);
+    background-color:var(--accent);
     
 
 
     margin-bottom: 16.6%;
     z-index:10;
-    box-shadow: 0 0.3rem 0.2rem #19232c; 
+    box-shadow: 0 0.3rem 0.2rem var(--accent-shadow); 
 }
 
 .namelist-menu-button:hover {

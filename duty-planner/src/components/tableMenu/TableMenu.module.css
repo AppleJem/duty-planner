@@ -102,4 +102,9 @@
     border-radius:0.6rem;
     margin-bottom: 3rem;
     border:unset;
+    background-color: var(--accent-light);
+}
+
+.update-button svg {
+    stroke: var(--input-bg);
 }

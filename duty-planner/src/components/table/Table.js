@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import uuid from 'react-uuid';
+
 
 import styles from "./Table.module.css"
 import DayTable from './DayTable';
@@ -52,7 +54,7 @@ const Table = React.memo(function () {
     const tables = []
     for (let i = 0; i < numberOfDays; i++) {
         tables.push(
-            <DayTable slotTimings={slotTimings} headings={headings} />
+            <DayTable key={uuid()} slotTimings={slotTimings} headings={headings} />
         )
     }
 
