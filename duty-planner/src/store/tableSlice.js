@@ -12,8 +12,13 @@ const tableSlice = createSlice({
         endTime: '',
         slotLength: { hours: 0, minutes: 0 },
         names:'',
+        tableRef:null,
     },
     reducers: {
+        setTableRef:(state,action) => {
+            console.log(action.payload);
+            state.tableRef = action.payload;
+        },
         setTimings: (state, action) => {
             state.timingsInput = action.payload;
         },

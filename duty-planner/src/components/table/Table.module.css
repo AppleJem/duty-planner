@@ -3,6 +3,9 @@
     grid-column: 1 / 7;
     grid-row-start:2;
     grid-row-end: span 11;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
     overflow:scroll;
     padding-bottom:100%;
 }
@@ -25,4 +28,11 @@
     border:  1px solid grey;
     width: 7rem;
     padding: 0.4em 0.7em;
+}
+
+.clear-table-button {
+    height:3rem;
+    width:3rem;
+    background-color: transparent;
+    border:unset;
 }

@@ -9,10 +9,11 @@
 } */
 
 .navbar{
-    background-color:white;
+    background-color:var(--nav);
     position:absolute;
     width:100%;
     display:grid;
+    align-items: center;
     grid-template-columns: repeat(6,1fr);
     height:3.4rem;
     z-index:8;

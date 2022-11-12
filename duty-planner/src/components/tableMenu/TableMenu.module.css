@@ -10,9 +10,9 @@
     display: flex;
     flex-direction: column;
     justify-content: start;
-    border: 1px solid grey;
     z-index: 10;
-    background-color: rgb(23, 23, 23);
+    background-color: var(--nav);
+    box-shadow: 0.1rem 0 0.4rem var(--table-bg);
     overflow-y: scroll;
     overflow-x: hidden;
 }
@@ -41,7 +41,7 @@
     background-color: transparent;
 }
 
-.form-control label {
+.form-control label, .form-control legend {
     display: block;
     margin-bottom: 0.5rem;
 }
@@ -54,16 +54,17 @@
 
     border: unset;
     border-radius: 0.5rem;
+    height:6rem;
     padding:0.5rem;
-    background-color: var(--menu-dark);
+    background-color: var(--input-bg);
     resize: vertical;
 }
 
 .slotcount-input input, .daycount-input input {
     display: inline-block;
     border: unset;
-    background-color: var(--menu-dark);
-    width: 3rem;
+    background-color: var(--input-bg);
+    width: 22.5%;
     height: 3rem;
     text-align: center;
     font-size: 1.3rem;
@@ -76,11 +77,11 @@
 
 .daycount-input button {
     border: unset;
-    background-color: var(--menu-dark);
+    background-color: var(--input-bg);
     border-radius: 1000px;
     text-align: center;
-    height: 2.6rem;
-    width: 2.6rem;
+    height: 2.8rem;
+    width: 2.8rem;
 }
 
 .form-control textarea::placeholder, .form-control input::placeholder {
@@ -100,4 +101,5 @@
     padding: 0.5rem 0.7rem;
     border-radius:0.6rem;
     margin-bottom: 3rem;
+    border:unset;
 }

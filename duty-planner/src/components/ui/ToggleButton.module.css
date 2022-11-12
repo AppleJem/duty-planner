@@ -1,0 +1,24 @@
+.toggle-container {
+    background-color:var(--input-bg);
+    width:3.5rem;
+    height:2rem;
+    border-radius:1000px;
+    display:flex;
+    align-items: center;
+}
+
+.toggle-container.active {
+    background-color:var(--text-bright);
+}
+
+.toggle-button {
+    width:1.7rem;
+    height: 1.7rem;
+    margin: 0 0.15rem;
+    background-color:var(--table-bg);
+    border-radius:1000px;
+    transition: translate 0.2s;
+}
+.toggle-button.active {
+    translate: 1.5rem 0;
+}

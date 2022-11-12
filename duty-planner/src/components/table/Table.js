@@ -1,23 +1,22 @@
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import uuid from 'react-uuid';
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-import TableRow from "./TableRow";
 import styles from "./Table.module.css"
+import DayTable from './DayTable';
 
-
-
-function Table() {
+const Table = React.memo(function () {
     const { timingsInput, days: numberOfDays, headingsInput, slots: numberOfSlots, startTime, endTime } = useSelector(state => state.tableSpecs);
-    const { timingInputMethod } = useSelector(state => state.menuStatus);
+    const timingInputMethod = useSelector(state => state.menuStatus.timingInputMethod);
 
     const headings = headingsInput.replace(/\s/g, '').split(',');
+
+
+
+    let slotTimings = [];
 
     function getTimeString(dateObj) { //function to get the formated timeString from JS date object
         return dateObj.toLocaleTimeString('en-US', { timeStyle: 'short', hourCycle: 'h23' })
     }
-
-    let slotTimings = [];
 
     //Generate differnet slotTimings based on whether manual or auto input was chosen
     if (timingInputMethod === 'auto') {
@@ -48,32 +47,19 @@ function Table() {
     }
 
 
-    const tRows = [];
-    for (let i = 0; i < slotTimings.length; i++) {
-        tRows.push(<TableRow key={uuid()} columnCount={headings.length} timing={slotTimings[i]}></TableRow>)
-    }
 
+    //Generates an array of tables. Each containing the heading and tRows previously made
     const tables = []
     for (let i = 0; i < numberOfDays; i++) {
-        tables.push(<table key={uuid()} className={styles['main-table']}>
-            <thead>
-                <tr>
-                    <td>Timing</td>
-                    {headings.map((heading) => {
-                        return <td key={uuid()}>{heading}</td>
-                    })}
-                </tr>
-            </thead>
-            <tbody>
-                {tRows}
-            </tbody>
-        </table>)
+        tables.push(
+            <DayTable slotTimings={slotTimings} headings={headings} />
+        )
     }
 
-    return <div className={styles['tables-container']}>
+    return <div id='table' className={styles['tables-container']}>
         {tables}
     </div>
+})
 
-}
 
 export default Table;

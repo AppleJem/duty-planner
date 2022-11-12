@@ -7,7 +7,7 @@ import NameCell from './NameCell';
 function TableRow(props) {
     const tColumns = []
     for (let i=0; i<props.columnCount; i++){
-        tColumns.push(<NameCell key={uuid()}></NameCell>)
+        tColumns.push(<NameCell deleting={props.deleting} key={uuid()}></NameCell>)
     }
     return (
         <tr>

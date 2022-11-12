@@ -13,7 +13,7 @@ import Navbar from './components/navbar/Navbar';
 function App() {
   const activeMenu = useSelector(state => state.menuStatus.activeMenu)
   
-
+  console.log('app is rerendering');
   return (
     <NameContextProvider>
       <div className={`app-container ${styles['main-container']}`}>

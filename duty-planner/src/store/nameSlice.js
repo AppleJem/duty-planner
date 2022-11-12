@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const nameSlice = createSlice({
     name: 'namesConfig',
-    initialState: { names: "", activeName: "" },
+    initialState: { names: [], activeName: {} },
     reducers: {
         setActiveName: (state, action) => {
             console.log(action.payload);

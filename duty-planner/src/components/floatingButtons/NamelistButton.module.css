@@ -2,17 +2,20 @@
     grid-column-start: 6;
     grid-column-end: 7;
     grid-row-start:-1;
-    width: 3rem;
-    height: 3rem;
+    width: 3.5rem;
+    height: 3.5rem;
     overflow: hidden;
     padding: 1em;
-    border: unset;
-    border: 1px solid grey;
     border-radius: 1000px;
 
+    border: unset;
+    background-color:var(--text);
+    
 
-    margin-bottom: 2rem;
+
+    margin-bottom: 16.6%;
     z-index:10;
+    box-shadow: 0 0.3rem 0.2rem #19232c; 
 }
 
 .namelist-menu-button:hover {

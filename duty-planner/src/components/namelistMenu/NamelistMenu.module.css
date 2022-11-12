@@ -15,25 +15,30 @@
 .name-menu {
     /* grid-column-start:1;
     grid-column-end:6; */
-    min-height: 15rem;
-    max-height: 45%;
-
+    /* min-height: 15rem;
+    max-height: 45%; */
+    height:40%;
     display:grid;
     grid-template-columns: repeat(6, 1fr);
-
-    background-color: #314657;
-    border: 1px solid white;
+    grid-template-rows: repeat(5, 1fr);
+    background-color: var(--nav);
     pointer-events:auto;
 }
 
 
 
-.toggle-button {
-    height:3rem;    
-    width:3rem;
+.namelist-toggle {
+    height:3.5rem;    
+    width:3.5rem;
     overflow:hidden;
-    border-radius: 1000px;
+    border:unset;
     grid-column-start:6;
-    margin-top:1rem;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.namelist-toggle legend{
+    margin-bottom:0.5rem;
 }
 

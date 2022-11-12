@@ -59,8 +59,14 @@ const menuSlice = createSlice({
         storeSlotLengthMinutes: (state,action) => {
             state.slotLengthInput.minutes = action.payload;
         },
-        setTimingInputMethod: (state,action) => {
-            state.timingInputMethod = action.payload;
+        toggleTimingInputMethod: (state) => {
+            if (state.timingInputMethod === 'auto') {
+                state.timingInputMethod = 'manual';
+            } else {
+                state.timingInputMethod = 'auto';
+            }
+            
+
         }
     }
 })

@@ -14,7 +14,7 @@ function HeadingsInput(props) {
 
     return <div className={styles['form-control']}>
         <label htmlFor='headingsInput'>Input Headings</label>
-        <textarea rows='5' id='headingsInput' onChange={updateHeadingInputsHandler} type='text' placeholder="Sentry, Desk, Service,..." value={storedHeadingsInput}></textarea>
+        <textarea id='headingsInput' onChange={updateHeadingInputsHandler} type='text' placeholder="Sentry, Desk, Service,..." value={storedHeadingsInput}></textarea>
     </div>
 }
 

@@ -1,14 +1,13 @@
-:root {
-    --accent-yellow: #CCA152;
-}
-
 .download-button {
-    height:3rem;
-    width:3rem;
-    border-radius: 0.1rem;
+    grid-column-start:6;
+    justify-self:center;
+    height:2.7rem;
+    width:2.7rem;
+    border-radius: 0.5rem;
     
-    background-color:var(--accent-yellow);
+    background-color:var(--accent);
     border:unset;
+    overflow:hidden;
 }
 
 .download-button:hover {

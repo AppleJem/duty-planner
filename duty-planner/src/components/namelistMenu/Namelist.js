@@ -1,13 +1,15 @@
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import uuid from 'react-uuid';
 
 import { nameActions } from '../../store/nameSlice';
 import styles from "./Namelist.module.css";
 
 function NameList() {
-    const {names} = useSelector(state=>state.namesConfig);
+    const coloredNames = useSelector(state => state.namesConfig.names);
     const dispatch = useDispatch();
 
-    const parsedNames = names.replace(/\s/g, '').split(',');
+    console.log(coloredNames);
 
     function changeActiveNameHandler(newActiveName) {
         //dispatching action to redux to update activeName
@@ -16,8 +18,15 @@ function NameList() {
     }
 
     const nameListArr = []
-    for (let i = 0; i < parsedNames.length; i++) {
-        nameListArr.push(<p key={parsedNames[i] + i} onClick={() => { changeActiveNameHandler(parsedNames[i]) }} className={styles['name-cell']}>{parsedNames[i]}</p>)
+    for (let i = 0; i < coloredNames.length; i++) {
+        nameListArr.push(
+            <p key={coloredNames[i]['name'] + uuid()}
+                onClick={() => { changeActiveNameHandler({ name: coloredNames[i]['name'], color: coloredNames[i]['color'] }) }}
+                className={styles['name-cell']}
+                style={{ backgroundColor: coloredNames[i]['color'] }}>
+                {coloredNames[i]['name']}
+            </p>
+        )
     }
 
 
@@ -28,4 +37,4 @@ function NameList() {
     </div>
 }
 
-export default NameList
+export default NameList;
