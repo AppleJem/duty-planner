@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from './NamesInput.module.css';
 import { menuActions } from '../../store/menuSlice';
 import { nameActions } from '../../store/nameSlice';
-import checkmark from '../../assets/buttonIcons/checkmark.svg';
 
 function NamesInput() {
     const namesInputRef = useRef();

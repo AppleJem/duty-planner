@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { NameContextProvider } from './store/name-context';
 
@@ -12,13 +13,29 @@ import Navbar from './components/navbar/Navbar';
 
 function App() {
   const activeMenu = useSelector(state => state.menuStatus.activeMenu)
+
+  useEffect(() => {
+    const unloadCallback = (event) => {
+      event.preventDefault();
+
+      const confirmationMessage = "\\o/";
+
+      // Gecko + IE
+      (event || window.event).returnValue = confirmationMessage;
+    
+      // Safari, Chrome, and other WebKit-derived browsers
+      return confirmationMessage;
+    };
+
+    window.addEventListener("beforeunload", unloadCallback);
+    return () => window.removeEventListener("beforeunload", unloadCallback);
+  }, []);
   
-  console.log('app is rerendering');
   return (
     <NameContextProvider>
       <div className={`app-container ${styles['main-container']}`}>
-        <Navbar/>
-        <NamelistButton/>
+        <Navbar />
+        <NamelistButton />
         {activeMenu === 'namelist' && <NamelistMenu />}
         {activeMenu === 'table' && <TableMenu />}
 

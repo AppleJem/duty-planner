@@ -9,11 +9,9 @@ function NameList() {
     const coloredNames = useSelector(state => state.namesConfig.names);
     const dispatch = useDispatch();
 
-    console.log(coloredNames);
 
     function changeActiveNameHandler(newActiveName) {
         //dispatching action to redux to update activeName
-        console.log(newActiveName);
         dispatch(nameActions.setActiveName(newActiveName));
     }
 

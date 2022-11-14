@@ -1,0 +1,15 @@
+.undo-button {
+    background-color:transparent;
+    border:unset;
+    height:2.7rem;
+    width:2.7rem;
+    grid-column: 6/7;
+    align-self:center;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.undo-button svg {
+    
+}

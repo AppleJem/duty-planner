@@ -53,7 +53,7 @@ const Table = React.memo(function () {
     const tables = []
     for (let i = 0; i < numberOfDays; i++) {
         tables.push(
-            <DayTable key={uuid()} slotTimings={slotTimings} headings={headings} />
+            <DayTable key={`day${i}table`} dayNumber={i} slotTimings={slotTimings} headings={headings} />
         )
     }
 

@@ -9,12 +9,10 @@ function StartEndInput() {
     const { startTimeInput, endTimeInput } = useSelector(state => state.menuStatus);
 
     function updateStartTime(event) {
-        console.log(event.target.value);
         dispatch(menuActions.storeStartTime(event.target.value));
     }
 
     function updateEndTime(event) {
-        console.log(event.target.value);
         dispatch(menuActions.storeEndTime(event.target.value));
 
     }

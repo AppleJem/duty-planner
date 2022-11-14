@@ -17,8 +17,6 @@ function NamelistMenu() {
         dispatch(menuActions.toggleNamelist());
     }
 
-
-    console.log(menuStatus.showNamelist)
     return <div className={styles['outer-container']}>
         <section className={styles['name-menu']}>
             <div className={styles['namelist-toggle']}>

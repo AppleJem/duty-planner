@@ -8,6 +8,8 @@ import { tableActions } from '../../store/tableSlice';
 function ZoomSelector() {
     const dispatch = useDispatch();
     const zoomValue = useSelector(state=>state.tableSpecs.zoom);
+    const cellList = useSelector(state=>state.backupInfo.cells);
+    const historyList = useSelector( state=> state.backupInfo.actionHistory);
 
     function zoomHandler(event) {
         dispatch(tableActions.setZoom(event.target.value))

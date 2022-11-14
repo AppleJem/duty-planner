@@ -7,7 +7,6 @@ import { menuActions } from '../../store/menuSlice';
 
 function SlotsInput() {
     const storedSlotsCount = useSelector(state=>state.menuStatus.slotsInput)
-    console.log(storedSlotsCount);
     const dispatch = useDispatch();
 
     function slotsNumberHandler (event) {

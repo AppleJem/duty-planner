@@ -37,7 +37,6 @@ const tableSlice = createSlice({
             state.startTime = action.payload;
         },
         setEndTime: (state, action) => {
-            console.log(action.payload)
             state.endTime = action.payload;
         },
         setSlotLength: (state, action) => {
@@ -49,7 +48,8 @@ const tableSlice = createSlice({
         },
         setZoom: (state,action) => {
             state.zoom = action.payload;
-        }
+        },
+
     }
 })
 

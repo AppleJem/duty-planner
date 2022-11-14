@@ -1,27 +1,41 @@
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 
-function NameCell (props) {
+import { backupActions } from '../../store/backupSlice';
+
+const NameCell = React.memo(function NameCell(props) {
+    const dispatch = useDispatch();
     const activeName = useSelector(state => state.namesConfig.activeName);
+    const undoInfo = useSelector(state => state.backupInfo.undoInfo);
     const [name, setName] = useState('');
     const [color, setColor] = useState('');
-    const [deleteCounter, setDeleteCounter] = useState(props.deleting);
+
+    useEffect(() => {
+        if (props.cellId === undoInfo.cellId) {
+            setName(undoInfo.lastName);
+            setColor(undoInfo.lastColor);
+        }
+    }, [props.cellId, undoInfo])
+
 
     function updateNameHandler() {
-        console.log(activeName);
         setName(activeName.name);
         setColor(activeName.color);
+        dispatch(backupActions.updateCellHistory({
+            cellId: props.cellId,
+            change: {
+                name: activeName.name,
+                color: activeName.color
+            }
+        }))
+        dispatch(backupActions.updateHistoryList(props.cellId));
     }
 
-    if (props.deleting>deleteCounter) {
-        setName('');
-        setDeleteCounter(props.deleting);
-    }
 
-    return <td style={{backgroundColor:color}} onClick={updateNameHandler}>
+    return <td style={{ backgroundColor: color }} onClick={updateNameHandler}>
         {name}
     </td>
-}
+})
 
 
 
