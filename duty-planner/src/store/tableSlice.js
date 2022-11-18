@@ -3,16 +3,13 @@ import { createSlice } from "@reduxjs/toolkit";
 const tableSlice = createSlice({
     name: 'tableSpecs',
     initialState: {
+        tables:[],
         timingsInput: "",
         headingsInput: "",
-        //number of days
         days: 0,
         slots: 0,
         startTime: '',
         endTime: '',
-        slotLength: { hours: 0, minutes: 0 },
-        names:'',
-        tableRef:null,
         zoom:100,
     },
     reducers: {
@@ -39,16 +36,20 @@ const tableSlice = createSlice({
         setEndTime: (state, action) => {
             state.endTime = action.payload;
         },
-        setSlotLength: (state, action) => {
-            state.slotLength.hours = action.payload.hours;
-            state.slotLength.minutes = action.payload.minutes;
-        },
-        setNames: (state,action) => {
-            state.names = action.payload;
-        },
         setZoom: (state,action) => {
             state.zoom = action.payload;
         },
+        addTable: (state,action) => {
+            console.log(action.payload);
+            state.tables.push({
+                headingInputs: action.payload.headingInputs,
+                startTime: action.payload.startTime,
+                endTime: action.payload.endTime,
+                numberOfSlots: action.payload.numberOfSlots,
+                timingInputs: action.payload.timingInputs,
+                timingInputMethod: action.payload.timingInputMethod
+            })
+        }
 
     }
 })

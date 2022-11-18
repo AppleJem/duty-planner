@@ -11,16 +11,16 @@ import HeadingsInput from './HeadingsInput';
 import DaysInput from './DaysInput';
 import SlotsInput from './SlotsInput';
 import StartEndInput from './StartEndInput';
-import SlotLengthInput from './SlotLengthInput';
 import ToggleTimingInput from './ToggleTimingInput';
 
-import arrowLeft from '../../assets/buttonIcons/arrow-left.svg';
-import checkmark from '../../assets/buttonIcons/checkmark.svg';
+import AddTableButton from './AddTableButton';
 
 function TableMenu() {
     const dispatch = useDispatch();
     const { headingsInput, timingsInput, daysInput, slotsInput, startTimeInput, endTimeInput, timingInputMethod } = useSelector(state => state.menuStatus);
     const [dayCount, setDayCount] = useState(0);
+    const [transformX, setTransformX] = useState(0);
+    const [touchStart, setTouchStart] = useState();
 
     function updateTableHandler() {
         dispatch(tableActions.setTimings(timingsInput));
@@ -34,14 +34,39 @@ function TableMenu() {
 
     function hideTableMenu() {
         dispatch(menuActions.setActiveMenu('none'));
+        
     }
 
-    return <aside className={styles['table-container']}>
+    function touchStartHandler (event) {
+        console.log(event.targetTouches[0].clientX);
+        setTouchStart(event.targetTouches[0].clientX);
+    }
+
+    function touchHandler(event) {
+        console.log(event.targetTouches[0].clientX);
+        if(event.targetTouches[0].clientX - touchStart < -9) {
+            setTransformX(event.targetTouches[0].clientX - touchStart + 9);
+            console.log(event.targetTouches[0].clientX - touchStart + 9);
+        }
+    }
+
+    function touchEndHandler(event) {
+        let endPoint = event.changedTouches[0].clientX;
+        console.log(endPoint);
+        if (touchStart-endPoint > 200) {
+            setTransformX(-400)
+        } else {
+            setTransformX(0);
+        }
+        
+    }
+
+    return <aside style={{transform:`translateX(${transformX}px)`}} onTouchStart={touchStartHandler} onTouchMove={touchHandler} onTouchEnd={touchEndHandler} className={styles['table-container']}>
         <div className={styles['title-bar']}>
             <h1 className={styles['menu-title']}>Table<br /> Customization</h1>
             <button onClick={hideTableMenu} className={styles['hide-button']}>
                 {/* <img src={arrowLeft} alt="hide Sidebar menu" /> */}
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-caret-left" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="bi bi-caret-left" viewBox="0 0 16 16">
                     <path d="M10 12.796V3.204L4.519 8 10 12.796zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753z" />
                 </svg>
             </button>
@@ -72,7 +97,7 @@ function TableMenu() {
             </button>
         </div>
 
-        
+        <AddTableButton/>
 
     </aside>
 
