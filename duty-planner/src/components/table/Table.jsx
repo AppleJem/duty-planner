@@ -4,18 +4,14 @@ import { useSelector } from 'react-redux';
 
 import styles from "./Table.module.css"
 import DayTable from './DayTable';
+import PromptTableMenu from './PromptTableMenu';
 
 const Table = React.memo(function () {
     // const { timingsInput, days: numberOfDays, headingsInput, slots: numberOfSlots, startTime, endTime } = useSelector(state => state.tableSpecs);
     const zoom = useSelector(state => state.tableSpecs.zoom);
     const timingInputMethod = useSelector(state => state.menuStatus.timingInputMethod);
+    //extract the array of tables from redux store
     const tablesInfo = useSelector(state => state.tableSpecs.tables);
-
-
-
-
-
-
 
 
     function generateHeadings(headingInputs) {
@@ -62,7 +58,7 @@ const Table = React.memo(function () {
 
 
 
-    //Generates an array of tables. Each containing the heading and tRows previously made
+    //Generate an array of DayTable components
     const tables = []
     for (let i = 0; i < tablesInfo.length; i++) {
         tables.push(
@@ -71,7 +67,7 @@ const Table = React.memo(function () {
     }
 
     return <div style={{ zoom: `${zoom}%` }} id='table' className={styles['tables-container']}>
-        {tables}
+        {tablesInfo.length === 0 ? <PromptTableMenu /> : { tables }}
     </div>
 })
 

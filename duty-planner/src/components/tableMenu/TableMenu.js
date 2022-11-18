@@ -1,6 +1,9 @@
 
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { tableActions } from '../../store/tableSlice';
 import { menuActions } from '../../store/menuSlice';
@@ -34,34 +37,23 @@ function TableMenu() {
 
     function hideTableMenu() {
         dispatch(menuActions.setActiveMenu('none'));
-        
+
     }
 
-    function touchStartHandler (event) {
-        console.log(event.targetTouches[0].clientX);
-        setTouchStart(event.targetTouches[0].clientX);
-    }
 
-    function touchHandler(event) {
-        console.log(event.targetTouches[0].clientX);
-        if(event.targetTouches[0].clientX - touchStart < -9) {
-            setTransformX(event.targetTouches[0].clientX - touchStart + 9);
-            console.log(event.targetTouches[0].clientX - touchStart + 9);
-        }
-    }
-
-    function touchEndHandler(event) {
-        let endPoint = event.changedTouches[0].clientX;
-        console.log(endPoint);
-        if (touchStart-endPoint > 200) {
-            setTransformX(-400)
-        } else {
-            setTransformX(0);
-        }
-        
-    }
-
-    return <aside style={{transform:`translateX(${transformX}px)`}} onTouchStart={touchStartHandler} onTouchMove={touchHandler} onTouchEnd={touchEndHandler} className={styles['table-container']}>
+    // return <Swiper
+    //     // install Swiper modules
+    //     modules={[Navigation, Pagination, Scrollbar, A11y]}
+    //     spaceBetween={50}
+    //     slidesPerView={3}
+    //     navigation
+    //     pagination={{ clickable: true }}
+    //     scrollbar={{ draggable: true }}
+    //     onSwiper={(swiper) => console.log(swiper)}
+    //     onSlideChange={() => console.log('slide change')}
+    // >
+    // </Swiper>
+    return <aside className={styles['table-container']}>
         <div className={styles['title-bar']}>
             <h1 className={styles['menu-title']}>Table<br /> Customization</h1>
             <button onClick={hideTableMenu} className={styles['hide-button']}>
@@ -97,9 +89,11 @@ function TableMenu() {
             </button>
         </div>
 
-        <AddTableButton/>
+        <AddTableButton />
 
     </aside>
+
+
 
 
 }

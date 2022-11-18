@@ -37,3 +37,21 @@
     background-color: transparent;
     border:unset;
 }
+
+.prompt-message {
+    margin-top: 2rem;
+}
+
+.configure-table-button {
+    background-color: var(--accent);
+    color: var(--nav);
+    font-weight: 600;
+    padding: 1rem;
+    border: unset;
+    border-radius: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.configure-table-button:active {
+    filter:brightness(0.9);
+}
