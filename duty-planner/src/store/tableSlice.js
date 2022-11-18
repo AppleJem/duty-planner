@@ -10,7 +10,7 @@ const tableSlice = createSlice({
         slots: 0,
         startTime: '',
         endTime: '',
-        zoom:100,
+        zoom:100
     },
     reducers: {
         setTimings: (state, action) => {
@@ -42,6 +42,7 @@ const tableSlice = createSlice({
         addTable: (state,action) => {
             console.log(action.payload);
             state.tables.push({
+                title:'',
                 headingInputs: action.payload.headingInputs,
                 startTime: action.payload.startTime,
                 endTime: action.payload.endTime,

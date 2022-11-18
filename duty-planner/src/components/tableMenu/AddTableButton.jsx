@@ -2,6 +2,8 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { tableActions } from "../../store/tableSlice";
 
+import styles from './TableMenu.module.css';
+
 function AddTableButton() {
     const dispatch = useDispatch();
 
@@ -24,7 +26,7 @@ function AddTableButton() {
         }));
     }
 
-    return <button onClick={addTableHandler}>
+    return <button className={styles['add-table-button']} onClick={addTableHandler}>
         Add Table
     </button>
 }

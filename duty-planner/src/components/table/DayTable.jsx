@@ -16,19 +16,23 @@ function DayTable(props) {
 
 
 
-    return <table className={styles['main-table']}>
-        <thead>
-            <tr>
-                <td>Timing</td>
-                {props.headings.map((heading) => {
-                    return <td key={uuid()}>{heading}</td>
-                })}
-            </tr>
-        </thead>
-        <tbody>
-            {tRows}
-        </tbody>
-    </table>
+    return <div className={styles['main-table']}>
+        <input type='text' defaultValue={`Day ${props.dayNumber + 1}`} className={styles['table-name']}/>
+        <hr/>
+        <table >
+            <thead>
+                <tr>
+                    <td>Timing</td>
+                    {props.headings.map((heading) => {
+                        return <td key={uuid()}>{heading}</td>
+                    })}
+                </tr>
+            </thead>
+            <tbody>
+                {tRows}
+            </tbody>
+        </table>
+    </div >
 }
 
 export default DayTable;

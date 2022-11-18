@@ -67,7 +67,7 @@ const Table = React.memo(function () {
     }
 
     return <div style={{ zoom: `${zoom}%` }} id='table' className={styles['tables-container']}>
-        {tablesInfo.length === 0 ? <PromptTableMenu /> : { tables }}
+        {tablesInfo.length === 0 ? <PromptTableMenu /> : tables}
     </div>
 })
 

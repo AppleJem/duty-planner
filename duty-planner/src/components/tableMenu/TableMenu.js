@@ -63,10 +63,6 @@ function TableMenu() {
                 </svg>
             </button>
         </div>
-        <DaysInput updateDaysInput={(newDaysInput) => {
-            //whenever the number of days changes, it is reflected in the state
-            setDayCount(newDaysInput);
-        }} />
         <HeadingsInput updateHeadingInputs={(newHeadingInputs) => {
             // setHeadingInputs(newHeadingInputs);
         }} />
@@ -80,14 +76,6 @@ function TableMenu() {
 
         {timingInputMethod === 'auto' && <StartEndInput />}
         {timingInputMethod === 'auto' && <SlotsInput />}
-
-        <div className={`${styles['form-control']} ${styles['update-button-container']}`}>
-            <button className={styles['update-button']} onClick={updateTableHandler}>
-                <svg alt='confirm table specifications' width="30" height="33" viewBox="0 0 45 33" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M3.01086 17.9421L16.1557 29.5931L41.9668 3.42574" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-            </button>
-        </div>
 
         <AddTableButton />
 

@@ -13,6 +13,25 @@
 .main-table {
     margin-bottom:1rem;
     background-color:var(--table-bg);   
+    display:flex;
+    flex-direction: column;
+    
+}
+
+.main-table input {
+    margin: 1rem auto 0 auto;
+    background-color: transparent;
+    border:unset;
+    text-align:center;
+    font-size: larger;
+}
+
+.main-table hr {
+    /* border-bottom: 1px solid var(--text-bright); */
+    width:4rem;
+    border:unset;
+    border-top: 1px solid var(--text-bright);
+
 }
 
 .main-table td {

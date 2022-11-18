@@ -108,3 +108,14 @@
 .update-button svg {
     stroke: var(--input-bg);
 }
+
+.add-table-button {
+    display:inline-block;
+    margin: 1rem auto;
+    padding: 1rem;
+    background-color: var(--accent);
+    color: var(--nav);
+    font-weight: 600;
+    border:unset;
+    border-radius:0.7rem;
+}
