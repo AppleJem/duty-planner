@@ -15,7 +15,8 @@
     box-shadow: 0.1rem 0 0.4rem var(--table-bg);
     overflow-y: scroll;
     overflow-x: hidden;
-    animation: slide-in 0.1s ease-out
+    animation: slide-in 0.1s ease-out;
+    transition: transform 0.1s ease-out;
 }
 
 @keyframes slide-in {
@@ -26,6 +27,10 @@
     to {
         transform: translateX(0);
     }
+}
+
+.table-container.closing {
+    transform:translateX(-100%);
 }
 
 .form-control {

@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const menuSlice = createSlice({
     name: 'menuStatus',
     initialState: {
-        activeMenu: "table",
+        activeMenu: "none",
         showNamelist: false,
         headingsInput: 'S1, S2, P1, P2',
         timingsInput: '',

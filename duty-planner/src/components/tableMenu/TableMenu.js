@@ -17,9 +17,7 @@ import AddTableButton from './AddTableButton';
 function TableMenu() {
     const dispatch = useDispatch();
     const { headingsInput, timingsInput, daysInput, slotsInput, startTimeInput, endTimeInput, timingInputMethod } = useSelector(state => state.menuStatus);
-    const [dayCount, setDayCount] = useState(0);
-    const [transformX, setTransformX] = useState(0);
-    const [touchStart, setTouchStart] = useState();
+    const [tableClosing, setTableClosing] = useState(false);
 
     function updateTableHandler() {
         dispatch(tableActions.setTimings(timingsInput));
@@ -32,24 +30,14 @@ function TableMenu() {
     }
 
     function hideTableMenu() {
-        dispatch(menuActions.setActiveMenu('none'));
-
+        setTableClosing(true);
     }
 
+    function closeTableMenu() {
+        dispatch(menuActions.setActiveMenu('none'));
+    }
 
-    // return <Swiper
-    //     // install Swiper modules
-    //     modules={[Navigation, Pagination, Scrollbar, A11y]}
-    //     spaceBetween={50}
-    //     slidesPerView={3}
-    //     navigation
-    //     pagination={{ clickable: true }}
-    //     scrollbar={{ draggable: true }}
-    //     onSwiper={(swiper) => console.log(swiper)}
-    //     onSlideChange={() => console.log('slide change')}
-    // >
-    // </Swiper>
-    return <aside className={styles['table-container']}>
+    return <aside onTransitionEnd={closeTableMenu} className={`${styles['table-container']} ${tableClosing && styles['closing']}`}>
         <div className={styles['title-bar']}>
             <h1 className={styles['menu-title']}>Table<br /> Customization</h1>
             <button onClick={hideTableMenu} className={`${styles['hide-button']}`}>

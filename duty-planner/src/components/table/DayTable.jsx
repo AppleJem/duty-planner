@@ -9,6 +9,8 @@ import TrashIcon from '../../assets/iconComponents/TrashIcon'
 import { tableActions } from '../../store/tableSlice';
 
 function DayTable(props) {
+    console.log(`${props.tableId} is rerendering`);
+
     const dispatch = useDispatch();
     const storedTitle = useSelector(state => state.tableSpecs.tables[props.tableId].title);
     const [trashClicked, setTrashClicked] = useState(false);
