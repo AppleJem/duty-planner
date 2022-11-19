@@ -1,9 +1,6 @@
 
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
-
-import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { tableActions } from '../../store/tableSlice';
 import { menuActions } from '../../store/menuSlice';
@@ -11,7 +8,6 @@ import { menuActions } from '../../store/menuSlice';
 import styles from "./TableMenu.module.css";
 import TimingsInput from './TimingsInput';
 import HeadingsInput from './HeadingsInput';
-import DaysInput from './DaysInput';
 import SlotsInput from './SlotsInput';
 import StartEndInput from './StartEndInput';
 import ToggleTimingInput from './ToggleTimingInput';

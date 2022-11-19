@@ -50,6 +50,12 @@ const tableSlice = createSlice({
                 timingInputs: action.payload.timingInputs,
                 timingInputMethod: action.payload.timingInputMethod
             })
+        },
+        changeTableTitle: (state,action) => {
+            state.tables[action.payload.index].title = action.payload.newTitle;
+        },
+        removeTable:(state,action) => {
+            state.tables.splice(action.payload , 1);
         }
 
     }

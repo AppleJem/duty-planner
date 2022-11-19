@@ -1,61 +1,94 @@
-
 .tables-container {
     grid-column: 1 / 7;
-    grid-row-start:2;
+    grid-row-start: 2;
     grid-row-end: span 11;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    overflow:scroll;
-    padding-bottom:100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: scroll;
+    padding-bottom: 100%;
 }
 
 .main-table {
-    margin-bottom:1rem;
-    background-color:var(--table-bg);   
-    display:flex;
+    margin-bottom: 1rem;
+    background-color: var(--table-bg);
+    display: flex;
     flex-direction: column;
-    
-}
-
-.main-table input {
-    margin: 1rem auto 0 auto;
-    background-color: transparent;
-    border:unset;
-    text-align:center;
-    font-size: larger;
-}
-
-.main-table hr {
-    /* border-bottom: 1px solid var(--text-bright); */
-    width:4rem;
-    border:unset;
-    border-top: 1px solid var(--text-bright);
 
 }
 
 .main-table td {
-    border:  1px solid grey;
+    border: 1px solid grey;
     width: 7rem;
     padding: 0.4em 0.7em;
 }
 
 .main-table td:nth-child(1) {
-    width:unset;
+    width: unset;
 }
 
 .main-table th {
-    border:  1px solid grey;
+    border: 1px solid grey;
     width: 7rem;
     padding: 0.4em 0.7em;
 }
 
-.clear-table-button {
-    height:3rem;
-    width:3rem;
-    background-color: transparent;
-    border:unset;
+.table-title-bar {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    align-items: center;
+    justify-items: center;
 }
+
+.table-title-group {
+    grid-column: 2/6;
+    display: flex;
+    flex-direction: column;
+}
+
+.table-title-group input {
+    margin: 0.5rem 1rem;
+    background-color: transparent;
+    border: unset;
+    text-align: left;
+    font-size: 1.2em;
+    min-width: 0;
+    font-weight: 600;
+}
+
+.table-title-bar svg {
+    fill: var(--input-bg);
+    width: 1.6rem;
+    grid-column: 6/7;
+    /* align-self:end; */
+    transition: 0.1s ease-in-out
+}
+
+.table-title-bar svg.active {
+    transform: translateX(calc(-0.7rem - 2.5em));
+}
+
+.delete-table-button {
+    position: absolute;
+    grid-column: 6/7;
+    background-color: var(--accent-dark);
+    color: var(--text);
+    border: unset;
+    border-radius: 100rem;
+    padding: 0.5rem 0.7rem;
+    animation: appear-animate .15s linear;
+}
+
+@keyframes appear-animate {
+    from{
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 
 .prompt-message {
     margin-top: 2rem;
@@ -72,5 +105,5 @@
 }
 
 .configure-table-button:active {
-    filter:brightness(0.9);
+    filter: brightness(0.9);
 }

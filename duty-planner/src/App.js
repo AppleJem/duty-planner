@@ -11,6 +11,11 @@ import TableMenu from './components/tableMenu/TableMenu';
 import NamelistButton from './components/floatingButtons/NamelistButton';
 import Navbar from './components/navbar/Navbar';
 
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import 'swiper/css';
+
 function App() {
   const activeMenu = useSelector(state => state.menuStatus.activeMenu)
 
@@ -22,7 +27,7 @@ function App() {
 
       // Gecko + IE
       (event || window.event).returnValue = confirmationMessage;
-    
+
       // Safari, Chrome, and other WebKit-derived browsers
       return confirmationMessage;
     };
@@ -30,7 +35,7 @@ function App() {
     window.addEventListener("beforeunload", unloadCallback);
     return () => window.removeEventListener("beforeunload", unloadCallback);
   }, []);
-  
+
   return (
     <NameContextProvider>
       <div className={`app-container ${styles['main-container']}`}>
@@ -38,7 +43,6 @@ function App() {
         <NamelistButton />
         {activeMenu === 'namelist' && <NamelistMenu />}
         {activeMenu === 'table' && <TableMenu />}
-
         <Table />
       </div>
 

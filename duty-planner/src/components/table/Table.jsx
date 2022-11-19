@@ -26,7 +26,6 @@ const Table = React.memo(function () {
     //Generate differnet slotTimings based on whether manual or auto input was chosen
     function generateTimings(dayTableInfo) {
         let slotTimings = [];
-        console.log(dayTableInfo.timingInputMethod);
         if (dayTableInfo.timingInputMethod === 'auto') {
             //Here we are using the number of slots and start/end time to generate the time slots for the table
             let startDate = new Date(2023, 0, 5, dayTableInfo.startTime.slice(0, 2), dayTableInfo.startTime.slice(3), 0);

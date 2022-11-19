@@ -1,10 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import styles from './Table.module.css';
 import uuid from 'react-uuid';
 
 import TableRow from './TableRow.js';
+import Cross from '../../assets/iconComponents/Cross';
+import TrashIcon from '../../assets/iconComponents/TrashIcon'
+import { tableActions } from '../../store/tableSlice';
 
 function DayTable(props) {
+    const dispatch = useDispatch();
+    const storedTitle = useSelector(state => state.tableSpecs.tables[props.dayNumber].title);
+    const [trashClicked, setTrashClicked] = useState(false)
+
+    useEffect(() => {
+        dispatch(tableActions.changeTableTitle({ index: props.dayNumber, newTitle: `Day ${props.dayNumber + 1}` }))
+    }, [dispatch, props.dayNumber])
+
+    function titleChangeHandler(event) {
+        dispatch(tableActions.changeTableTitle({ index: props.dayNumber, newTitle: event.target.value }))
+    }
+
+    function trashClickHandler() {
+        setTrashClicked(true);
+        console.log('clicked');
+    }
+
+    function deleteTableHandler() {
+        dispatch(tableActions.removeTable(props.dayNumber));
+    }
 
 
     // Generates an array of rows, left most cell has the timing stamp
@@ -17,8 +41,16 @@ function DayTable(props) {
 
 
     return <div className={styles['main-table']}>
-        <input type='text' defaultValue={`Day ${props.dayNumber + 1}`} className={styles['table-name']}/>
-        <hr/>
+        <div className={styles['table-title-bar']}>
+            <div className={styles['table-title-group']}>
+                <input onChange={titleChangeHandler} type='text' value={storedTitle} className={styles['table-name']} />
+            </div>
+            <TrashIcon className={trashClicked ? styles.active : null} onClick={trashClickHandler} />
+            {trashClicked && <button onClick={deleteTableHandler} className={`${styles['delete-table-button']}`}>
+                Delete
+            </button>}
+
+        </div>
         <table >
             <thead>
                 <tr>
