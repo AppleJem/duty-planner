@@ -16,6 +16,10 @@ function ToggleTimingInput() {
         dispatch(menuActions.setTimingInputMethod('manual'));
     }
 
+    function preventPropagation(event) {
+        event.stopPropagation();
+    }
+
     return <div className={`${styles['form-control']}`}>
         <legend >Manual Timing Input</legend>
         {/* <div className={`${classes['toggle-container']}`} >
@@ -25,7 +29,7 @@ function ToggleTimingInput() {
         {/* <div onClick={toggleTimingInput} className={`${classes['toggle-container']} ${timingInputMethod === 'manual' && classes['active']}`}>
             <div className={`${classes['toggle-button']} ${timingInputMethod === 'manual' && classes['active']}`}></div>
         </div> */}
-        <ToggleButton toggleFunction={toggleTimingInput} toggleState={timingInputMethod === 'manual'}/>
+        <ToggleButton onTransitionEnd={preventPropagation} toggleFunction={toggleTimingInput} toggleState={timingInputMethod === 'manual'}/>
     </div>
 }
 
