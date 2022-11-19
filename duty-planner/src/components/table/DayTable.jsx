@@ -10,15 +10,15 @@ import { tableActions } from '../../store/tableSlice';
 
 function DayTable(props) {
     const dispatch = useDispatch();
-    const storedTitle = useSelector(state => state.tableSpecs.tables[props.dayNumber].title);
+    const storedTitle = useSelector(state => state.tableSpecs.tables[props.tableId].title);
     const [trashClicked, setTrashClicked] = useState(false)
 
     useEffect(() => {
-        dispatch(tableActions.changeTableTitle({ index: props.dayNumber, newTitle: `Day ${props.dayNumber + 1}` }))
+        dispatch(tableActions.changeTableTitle({ id: props.tableId, newTitle:`Day ${props.dayNumber}` }))
     }, [dispatch, props.dayNumber])
 
     function titleChangeHandler(event) {
-        dispatch(tableActions.changeTableTitle({ index: props.dayNumber, newTitle: event.target.value }))
+        dispatch(tableActions.changeTableTitle({ id: props.tableId, newTitle: event.target.value }))
     }
 
     function trashClickHandler() {
@@ -27,7 +27,7 @@ function DayTable(props) {
     }
 
     function deleteTableHandler() {
-        dispatch(tableActions.removeTable(props.dayNumber));
+        dispatch(tableActions.removeTable(props.tableId));
     }
 
 

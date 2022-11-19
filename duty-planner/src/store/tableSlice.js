@@ -3,7 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const tableSlice = createSlice({
     name: 'tableSpecs',
     initialState: {
-        tables:[],
+        tables:{},
+        tableCount:0,
         timingsInput: "",
         headingsInput: "",
         days: 0,
@@ -41,21 +42,25 @@ const tableSlice = createSlice({
         },
         addTable: (state,action) => {
             console.log(action.payload);
-            state.tables.push({
+            state.tables[action.payload.id] = {
                 title:'',
-                headingInputs: action.payload.headingInputs,
-                startTime: action.payload.startTime,
-                endTime: action.payload.endTime,
-                numberOfSlots: action.payload.numberOfSlots,
-                timingInputs: action.payload.timingInputs,
-                timingInputMethod: action.payload.timingInputMethod
-            })
+                // headingInputs: action.payload.headingInputs,
+                // startTime: action.payload.startTime,
+                // endTime: action.payload.endTime,
+                // numberOfSlots: action.payload.numberOfSlots,
+                // timingInputs: action.payload.timingInputs,
+                // timingInputMethod: action.payload.timingInputMethod,
+                timingsArr: action.payload.timingsArr,
+                headingsArr: action.payload.headingsArr,
+            };
+            state.tableCount += 1;
         },
         changeTableTitle: (state,action) => {
-            state.tables[action.payload.index].title = action.payload.newTitle;
+            state.tables[action.payload.id].title = action.payload.newTitle;
         },
         removeTable:(state,action) => {
-            state.tables.splice(action.payload , 1);
+            // state.tables.splice(action.payload , 1);
+            delete state.tables[action.payload];
         }
 
     }

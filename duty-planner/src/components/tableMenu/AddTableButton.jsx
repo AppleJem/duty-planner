@@ -2,27 +2,79 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { tableActions } from "../../store/tableSlice";
 
+import uuid from "react-uuid";
+
 import styles from './TableMenu.module.css';
 
 function AddTableButton() {
     const dispatch = useDispatch();
 
+    const tableCount = useSelector(state => state.tableSpecs.tableCount);
+
 
     const startTimeInput = useSelector((state) => state.menuStatus.startTimeInput);
     const endTimeInput = useSelector((state) => state.menuStatus.endTimeInput);
-    const numberofSlots = useSelector((state) => state.menuStatus.slotsInput);
+    const numberOfSlots = useSelector((state) => state.menuStatus.slotsInput);
     const timingsInput = useSelector((state) => state.menuStatus.timingsInput);
     const headingsInput = useSelector((state) => state.menuStatus.headingsInput);
     const timingInputMethod = useSelector((state) => state.menuStatus.timingInputMethod);
 
+    function generateHeadings(headingInputs) {
+        const headings = headingInputs.replace(/\s/g, '').split(',');
+        return headings;
+    }
+
+    function getTimeString(dateObj) { //function to get the formated timeString from JS date object
+        return dateObj.toLocaleTimeString('en-US', { timeStyle: 'short', hourCycle: 'h23' })
+    }
+
+    function generateTimings(inputs, inputType) {
+        let slotTimings = [];
+        if (inputType === 'auto') {
+            console.log('we got an auto input')
+            //Here we are using the number of slots and start/end time to generate the time slots for the table
+            let startDate = new Date(2023, 0, 5, inputs.startTime.slice(0, 2), inputs.startTime.slice(3), 0);
+            let endDate = null;
+            if (inputs.startTime === inputs.endTime) {
+                endDate = new Date(2023, 0, 5, inputs.endTime.slice(0, 2), inputs.endTime.slice(3), 0)
+            }
+            let slotLength = 0;
+            if (startDate.valueOf() === endDate.valueOf()) {
+                slotLength = (24 * 60 * 60 * 1000) / inputs.numberOfSlots
+            } else {
+                slotLength = Math.abs(startDate - endDate) / inputs.numberOfSlots;
+            }
+
+            for (let i = 0; i < inputs.numberOfSlots; i++) {
+                let timeSlotString = getTimeString(startDate);
+                startDate.setTime(startDate.getTime() + slotLength);
+                timeSlotString = timeSlotString + "-" + getTimeString(startDate);
+                timeSlotString = timeSlotString.replace(/:/g, '');
+                slotTimings.push(timeSlotString);
+            }
+        } else {
+            slotTimings = inputs.timingInputs.replace(/\s/g, '').split(',');
+        }
+
+        return slotTimings;
+    }
+
     function addTableHandler() {
         dispatch(tableActions.addTable({
+            id: `table${tableCount}`,
             headingInputs: headingsInput,
             startTime: startTimeInput,
             endTime: endTimeInput,
-            numberOfSlots: numberofSlots,
+            numberOfSlots,
             timingInputs: timingsInput,
-            timingInputMethod: timingInputMethod
+            timingInputMethod: timingInputMethod,
+            headingsArr: generateHeadings(headingsInput),
+            timingsArr: generateTimings({
+                startTime: startTimeInput,
+                endTime: endTimeInput,
+                numberOfSlots: numberOfSlots,
+                timingInputs:timingsInput,
+            }, timingInputMethod)
         }));
     }
 
