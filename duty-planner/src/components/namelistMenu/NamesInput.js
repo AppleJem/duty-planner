@@ -20,9 +20,7 @@ function NamesInput() {
     function formSubmitHandler(event) {
         event.preventDefault();
         const parsedNames = storedNamesInput.replace(/\s/g, '').split(',');
-        console.log(parsedNames);
         let hue = 0;
-        console.log(parsedNames);
         const coloredNames = parsedNames.map((name) => {
             (hue < 60 && hue < 180) ? hue += 47 : hue += 39;
             let factor = Math.floor(hue / 360)
@@ -33,7 +31,6 @@ function NamesInput() {
                 color: `hsl(${hue}deg, ${sat}%, ${light}%)`
             }
         })
-        console.log(coloredNames)
         dispatch(nameActions.setNames(coloredNames))
         showNameList();
     }

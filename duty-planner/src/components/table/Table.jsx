@@ -15,14 +15,15 @@ const Table = React.memo(function () {
 
 
     //Generate an array of DayTable components
-    const tables = []
+    //we're not using for(x in y) here because we need the tables to appear in order. The tablesInfo object is not ordered by default
+    const tables = [];
+    let dayCount = 1
     for (let i = 0; i < tableCount; i++) {
-        console.log(tablesInfo[`table${i}`]);
         if (tablesInfo[`table${i}`]) {
-            console.log('adding to table')
             tables.push(
-                <DayTable key={`table${tableCount}`} dayNumber={i} tableId={`table${i}`} slotTimings={tablesInfo[`table${i}`].timingsArr} headings={tablesInfo[`table${i}`].headingsArr} />
+                <DayTable key={`table${i}`} dayNumber={dayCount} tableId={`table${i}`} slotTimings={tablesInfo[`table${i}`].timingsArr} headings={tablesInfo[`table${i}`].headingsArr} />
             )
+            dayCount += 1;
         }
     }
 

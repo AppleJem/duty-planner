@@ -57,17 +57,45 @@
     font-weight: 600;
 }
 
-.table-title-bar svg {
-    fill: var(--input-bg);
-    width: 1.6rem;
+.prompt-delete-button {
     grid-column: 6/7;
-    /* align-self:end; */
-    transition: 0.1s ease-in-out
+    transition: transform 0.1s ease-in-out;
+    background-color: transparent;
+    border: unset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.table-title-bar svg.active {
-    transform: translateX(calc(-0.7rem - 2.5em));
+.prompt-delete-button.active {
+    transform: translateX(calc(-0.7rem - 2.9em));
 }
+
+.prompt-delete-button .trash-icon {
+    fill: var(--input-bg);
+    width: 1.6rem;
+    position: absolute;
+    transition: opacity 0.1s liner;
+    animation: fade-in 0.1s linear;
+}
+
+.prompt-delete-button.active .trash-icon {
+    opacity: 0;
+}
+
+.prompt-delete-button .cross-icon {
+    width: 2rem;
+    stroke: var(--input-bg);
+    transition: opacity 0.1s linear;
+    opacity: 0;
+}
+
+.prompt-delete-button.active .cross-icon {
+    animation: fade-in 0.1s linear;
+    opacity:1;
+}
+
+
 
 .delete-table-button {
     position: absolute;
@@ -77,13 +105,14 @@
     border: unset;
     border-radius: 100rem;
     padding: 0.5rem 0.7rem;
-    animation: appear-animate .15s linear;
+    animation: fade-in .15s linear;
 }
 
-@keyframes appear-animate {
-    from{
+@keyframes fade-in {
+    from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }

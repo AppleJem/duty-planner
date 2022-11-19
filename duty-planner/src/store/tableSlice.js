@@ -3,15 +3,15 @@ import { createSlice } from "@reduxjs/toolkit";
 const tableSlice = createSlice({
     name: 'tableSpecs',
     initialState: {
-        tables:{},
-        tableCount:0,
+        tables: {},
+        tableCount: 0,
         timingsInput: "",
         headingsInput: "",
         days: 0,
         slots: 0,
         startTime: '',
         endTime: '',
-        zoom:100
+        zoom: 100
     },
     reducers: {
         setTimings: (state, action) => {
@@ -37,28 +37,21 @@ const tableSlice = createSlice({
         setEndTime: (state, action) => {
             state.endTime = action.payload;
         },
-        setZoom: (state,action) => {
+        setZoom: (state, action) => {
             state.zoom = action.payload;
         },
-        addTable: (state,action) => {
-            console.log(action.payload);
+        addTable: (state, action) => {
             state.tables[action.payload.id] = {
-                title:'',
-                // headingInputs: action.payload.headingInputs,
-                // startTime: action.payload.startTime,
-                // endTime: action.payload.endTime,
-                // numberOfSlots: action.payload.numberOfSlots,
-                // timingInputs: action.payload.timingInputs,
-                // timingInputMethod: action.payload.timingInputMethod,
+                title: '',
                 timingsArr: action.payload.timingsArr,
                 headingsArr: action.payload.headingsArr,
             };
             state.tableCount += 1;
         },
-        changeTableTitle: (state,action) => {
+        changeTableTitle: (state, action) => {
             state.tables[action.payload.id].title = action.payload.newTitle;
         },
-        removeTable:(state,action) => {
+        removeTable: (state, action) => {
             // state.tables.splice(action.payload , 1);
             delete state.tables[action.payload];
         }

@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 
 import { tableActions } from "../../store/tableSlice";
+import { backupActions } from '../../store/backupSlice';
 
 import uuid from "react-uuid";
 
@@ -31,7 +32,6 @@ function AddTableButton() {
     function generateTimings(inputs, inputType) {
         let slotTimings = [];
         if (inputType === 'auto') {
-            console.log('we got an auto input')
             //Here we are using the number of slots and start/end time to generate the time slots for the table
             let startDate = new Date(2023, 0, 5, inputs.startTime.slice(0, 2), inputs.startTime.slice(3), 0);
             let endDate = null;
@@ -60,22 +60,24 @@ function AddTableButton() {
     }
 
     function addTableHandler() {
-        dispatch(tableActions.addTable({
-            id: `table${tableCount}`,
-            headingInputs: headingsInput,
+        let headingsArr = generateHeadings(headingsInput);
+        let timingsArr = generateTimings({
             startTime: startTimeInput,
             endTime: endTimeInput,
-            numberOfSlots,
+            numberOfSlots: numberOfSlots,
             timingInputs: timingsInput,
-            timingInputMethod: timingInputMethod,
-            headingsArr: generateHeadings(headingsInput),
-            timingsArr: generateTimings({
-                startTime: startTimeInput,
-                endTime: endTimeInput,
-                numberOfSlots: numberOfSlots,
-                timingInputs:timingsInput,
-            }, timingInputMethod)
+        }, timingInputMethod);
+        dispatch(tableActions.addTable({
+            id: `table${tableCount}`,
+            headingsArr,
+            timingsArr,
         }));
+        for (let i = 0; i < timingsArr.length; i++) {
+            for (let j = 0; j < headingsArr.length; j++) {
+                let cellId = `table${tableCount}_${i}_${j}`
+                dispatch(backupActions.addToCellList(cellId));
+            }
+        }
     }
 
     return <button className={styles['add-table-button']} onClick={addTableHandler}>

@@ -10,16 +10,9 @@ const TableRow = React.memo(function TableRow(props) {
     const dispatch = useDispatch();
 
 
-    useEffect(() => {
-        for (let i = 0; i < props.columnCount; i++) {
-            let cellId = `${props.dayNumber}_${props.rowNumber}_${i}`
-            dispatch(backupActions.addToCellList(cellId));
-        }
-    }, [])
-
     const tColumns = []
     for (let i = 0; i < props.columnCount; i++) {
-        tColumns.push(<NameCell cellId={`${props.dayNumber}_${props.rowNumber}_${i}`} deleting={props.deleting} key={uuid()} />)
+        tColumns.push(<NameCell cellId={`${props.tableId}_${props.rowNumber}_${i}`} key={uuid()} />)
     }
     return (
         <tr>
