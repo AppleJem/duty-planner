@@ -29,6 +29,17 @@ function getSnapshot(cellList) {
     return snapshotObj;
 }
 
+function generateNames (namelist) {
+    let allNames = {};
+    for (let i=0; i<namelist.length; i++) {
+        allNames[i] = {
+            name: namelist[i].name,
+            color: namelist[i].color
+        }
+    }
+    return allNames;
+}
+
 function generateHeadings(tables) {
     let allHeadings = {}
     for (let key in tables) {
@@ -41,4 +52,4 @@ function generateHeadings(tables) {
     return allHeadings;
 }
 
-export { generateHeadings, generateCellList, getSnapshot };
+export { generateHeadings, generateCellList, getSnapshot, generateNames };

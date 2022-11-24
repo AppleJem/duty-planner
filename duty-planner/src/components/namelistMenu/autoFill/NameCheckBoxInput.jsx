@@ -10,11 +10,11 @@ function NameCheckBoxInput(props) {
     }
 
 
-    for (let i = 0; i < props.dataArr.length; i++) {
+    for (let person in props.allNames) {
         checkboxes.push(
             <CheckBox onClick={() => {
-                props.updateFinalNames(i, props.finalNames[i] !== undefined, props.dataArr[i])
-            }} key={`element${i}_${props.dataArr[i].name}`} label={props.dataArr[i].name} />
+                props.updateFinalNames(person, props.allNames[person]);
+            }} key={`${person}_${props.allNames[person].name}`} label={props.allNames[person].name} />
         )
     }
     return <div>

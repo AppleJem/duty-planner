@@ -8,39 +8,41 @@ import styles from './AutofillMenu.module.css';
 import classes from '../NamelistMenu.module.css';
 import ToggleButton from '../../ui/ToggleButton';
 import Cross from '../../../assets/iconComponents/Cross';
-import NameCheckBoxInput from './ColCheckBoxInput';
+import NameCheckBoxInput from './NameCheckBoxInput';
 import ColCheckBoxInput from './ColCheckBoxInput';
-import { generateHeadings, generateCellList, getSnapshot } from './autoFillHelpers.js';
+import { generateHeadings, getSnapshot, generateNames } from './autoFillHelpers.js';
 
 function AutofillMenu() {
     const dispatch = useDispatch();
 
     const tablesInfo = useSelector(state => state.tableSpecs.tables);
-    const tableCount = useSelector(state => state.tableSpecs.tableCount);
     const namelist = useSelector(state => state.namesConfig.names);
     const cellList = useSelector(state => state.backupInfo.cells)
+    const allNames = generateNames(namelist);
     const allHeadings = generateHeadings(tablesInfo);
 
-    const [finalNames, setFinalNames] = useState(namelist);
+    const [finalNames, setFinalNames] = useState(allNames);
     const [finalHeadings, setFinalHeadings] = useState(allHeadings);
 
 
     function autofillTable() {
         let snapshot = getSnapshot(cellList);
+        console.log(snapshot);
         let nameCounter = 0;
-        let cells = generateCellList(tablesInfo, tableCount);
         let filledCells = {};
 
-        for (let cell of cells) {
-            if (nameCounter >= finalNames.length) {
-                nameCounter = nameCounter % finalNames.length;
+        for (let cell in snapshot) {
+            if (!finalHeadings.hasOwnProperty(cellList[cell]['heading'])) {
+                continue;
+            }
+            if (nameCounter === Object.keys(finalNames).length) {
+                //if this element is empty (because of checkbox options), skip to next element
+                nameCounter = 0
             }
             //condition: the cell that we're targeting has no name and no color.
             if (snapshot[cell].name === '' && snapshot[cell].color === '') {
-                if (finalNames[nameCounter] === undefined) {
-                    //if this element is empty (because of checkbox options), skip to next element
-                    nameCounter += 1
-                }
+                console.log(nameCounter);
+                console.log(finalNames[nameCounter]);
                 filledCells[cell] = { name: finalNames[nameCounter].name, color: finalNames[nameCounter].color };
                 dispatch(backupActions.updateCellHistory({
                     cellId: cell,
@@ -55,9 +57,6 @@ function AutofillMenu() {
         dispatch(autofillActions.setFilledCells(filledCells));
     }
 
-
-
-
     function autofillHandler() {
         console.log('activate button clicked');
         dispatch(backupActions.takeSnapShot());
@@ -65,44 +64,43 @@ function AutofillMenu() {
 
     }
 
-    function updateFinalNames(index, isRemove, value) {
-        if (isRemove) {
-            setFinalNames((prev) => {
-                let copy = [...prev];
-                delete copy[index];
-                return copy;
-            })
-        } else {
-            setFinalNames((prev) => {
-                let copy = [...prev];
-                copy[index] = value;
-                return copy;
-            })
-        }
-    }
-
-    function updateFinalHeadings(heading) {
-        setFinalHeadings((prev) => {
-                let copy = {...prev};
-            if (copy[heading]) {
-                delete copy[heading];
+    function updateFinalNames(name, color) {
+        setFinalNames((prev) => {
+            let copy = { ...prev };
+            if (copy[name]) {
+                delete copy[name];
             } else {
-                copy[heading] = heading;
+                copy[name] = color;
             }
             return copy;
         })
     }
 
+    function updateFinalHeadings(heading) {
+        setFinalHeadings((prev) => {
+            let copy = { ...prev };
+            if (copy[heading]) {
+                delete copy[heading];
+            } else {
+                copy[heading] = heading;
+            }
+            console.log(copy);
+            return copy;
+        })
+    }
+
     function checkData() {
-        console.log(finalNames);
+        console.log(finalNames.length);
         console.log(tablesInfo);
         console.log(finalHeadings);
+        console.log(cellList);
+        console.log(allNames);
     }
 
     return <section className={`${styles['autofill-menu']}`}>
         <p className={`${styles.title}`}>Autofill Menu</p>
         <p>Fill up all empty slots with the name list.<br />Please specify the columns, tables, and names to exclude</p>
-        <NameCheckBoxInput updateFinalNames={updateFinalNames} finalNames={finalNames} dataArr={namelist} />
+        <NameCheckBoxInput updateFinalNames={updateFinalNames} finalNames={finalNames} allNames={allNames} />
         <ColCheckBoxInput updateFinalHeadings={updateFinalHeadings} finalHeadings={finalHeadings} allHeadings={allHeadings} />
         <button onClick={autofillHandler}>
             Autofill
