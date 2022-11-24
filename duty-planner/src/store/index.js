@@ -3,6 +3,7 @@ import nameSlice from "./nameSlice";
 import tableSlice from "./tableSlice";
 import menuSlice from "./menuSlice";
 import backupSlice from "./backupSlice";
+import autofillSlice from "./autofillSlice";
 
 const store = configureStore({
     reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
         tableSpecs:tableSlice.reducer,
         menuStatus: menuSlice.reducer,
         backupInfo: backupSlice.reducer,
+        autofillInfo: autofillSlice.reducer,
     }
 })
 

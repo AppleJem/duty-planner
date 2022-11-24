@@ -5,6 +5,7 @@ const menuSlice = createSlice({
     initialState: {
         activeMenu: "none",
         showNamelist: false,
+        menuShowing: "nameInput", //nameInput, namelist, autofill
         headingsInput: 'S1, S2, P1, P2',
         timingsInput: '',
         slotsInput: 6,
@@ -58,6 +59,9 @@ const menuSlice = createSlice({
             }
             
 
+        },
+        setMenuShowing: (state, action) => {
+            state.menuShowing = action.payload;
         }
     }
 })

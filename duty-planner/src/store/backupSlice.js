@@ -6,15 +6,18 @@ const backupSlice = createSlice({
         actionHistory: [],
         backup: null,
         cells: {},
-        undoInfo: {}
+        undoInfo: {},
+        snapshot: {},
+
     },
     reducers: {
         updateHistory: (state, action) => {
             state.actionHistory.push(action.payload);
         },
         addToCellList: (state, action) => {
-            state.cells[action.payload] = {
-                history: [{ color: 'transparent', name: '' }],
+            state.cells[action.payload.cellId] = {
+                history: [{ color: '', name: '' }],
+                heading: action.payload.heading
             };
         },
         removeFromCellList: (state, action) => {
@@ -37,6 +40,19 @@ const backupSlice = createSlice({
                 state.actionHistory.pop();
                 state.cells[lastChangedCell[0]].history.pop();
             }
+        },
+        takeSnapShot: (state) => {
+            let keysArr = Object.keys(state.cells);
+            let snapshotObj = {}
+            for (let i = 0; i < keysArr.length; i++) {
+                let lastState = state.cells[keysArr[i]].history.slice(-1)[0]
+                snapshotObj[keysArr[i]] = {
+                    name: lastState.name,
+                    color: lastState.color
+                }
+            }
+            console.log(snapshotObj);
+            state.snapshot = snapshotObj;
         }
     }
 })

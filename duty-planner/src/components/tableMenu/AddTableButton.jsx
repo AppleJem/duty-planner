@@ -75,7 +75,7 @@ function AddTableButton() {
         for (let i = 0; i < timingsArr.length; i++) {
             for (let j = 0; j < headingsArr.length; j++) {
                 let cellId = `table${tableCount}_${i}_${j}`
-                dispatch(backupActions.addToCellList(cellId));
+                dispatch(backupActions.addToCellList({cellId, heading: headingsArr[j]}));
             }
         }
     }

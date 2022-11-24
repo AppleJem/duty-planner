@@ -1,0 +1,36 @@
+.checkbox-container {
+    /* background-color: grey; */
+    display:flex;
+    align-items: center;
+}
+
+.checkbox {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    width:1em;
+    height:1em;
+    background-color: var(--table-bg);
+    border: 0.15em solid var(--input-bg);
+    border-radius: 0.3em;
+}
+
+.checkbox svg {
+    display:none;
+}
+
+.checkbox.active {
+    background-color: var(--input-bg);
+}
+
+.checkbox.active svg{
+    display:inline;
+    stroke-width: 1;
+    stroke: var(--table-bg);
+    width:4rem;
+    /* stroke: var(--input-bg); */
+}
+
+.checkbox-label {
+    margin-left: 0.5ch;
+}

@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './NamesInput.module.css';
+import classes from './NamelistMenu.module.css';
 import { menuActions } from '../../store/menuSlice';
 import { nameActions } from '../../store/nameSlice';
 
@@ -38,7 +39,7 @@ function NamesInput() {
 
 
     return <form onSubmit={formSubmitHandler} className={styles['form-control']}>
-        <label htmlFor='namesInput'>Input Duty Personnel Names</label>
+        <label className={classes.title} htmlFor='namesInput'>Input Duty Personnel Names</label>
         <textarea onChange={namesChangeHandler} autoComplete="on" cols='35' rows='5' id='namesInput' type="text" placeholder="Alpha, Bravo, Charlie,..." value={storedNamesInput}></textarea>
         <button type="submit" className={styles['update-button']} >
             {/* <img style={{fill:'red'}} src={checkmark} /> */}
