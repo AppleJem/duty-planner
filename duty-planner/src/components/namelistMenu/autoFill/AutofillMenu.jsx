@@ -35,13 +35,13 @@ function AutofillMenu() {
             if (!finalHeadings.hasOwnProperty(cellList[cell]['heading'])) {
                 continue;
             }
-            if (nameCounter === Object.keys(finalNames).length) {
-                //if this element is empty (because of checkbox options), skip to next element
-                nameCounter = 0
+            while (!finalNames[nameCounter]) {
+                nameCounter+=1;
+                nameCounter = nameCounter % Object.keys(allNames).length;
             }
             //condition: the cell that we're targeting has no name and no color.
             if (snapshot[cell].name === '' && snapshot[cell].color === '') {
-                console.log(nameCounter);
+                console.log(cell);
                 console.log(finalNames[nameCounter]);
                 filledCells[cell] = { name: finalNames[nameCounter].name, color: finalNames[nameCounter].color };
                 dispatch(backupActions.updateCellHistory({
@@ -90,7 +90,7 @@ function AutofillMenu() {
     }
 
     function checkData() {
-        console.log(finalNames.length);
+        console.log(finalNames);
         console.log(tablesInfo);
         console.log(finalHeadings);
         console.log(cellList);
