@@ -67,17 +67,28 @@ function AddTableButton() {
             numberOfSlots: numberOfSlots,
             timingInputs: timingsInput,
         }, timingInputMethod);
+
         dispatch(tableActions.addTable({
             id: `table${tableCount}`,
             headingsArr,
             timingsArr,
         }));
+
+        let newTable = {};
         for (let i = 0; i < timingsArr.length; i++) {
             for (let j = 0; j < headingsArr.length; j++) {
                 let cellId = `table${tableCount}_${i}_${j}`
-                dispatch(backupActions.addToCellList({cellId, heading: headingsArr[j]}));
+                newTable[cellId] = {
+                    name: '',
+                    color: '',
+                    heading: headingsArr[j]
+                }
             }
         }
+        dispatch(backupActions.updateCurrentSnapshot({
+            type: 'newTable',
+            newTable: newTable
+        }));
     }
 
     return <button className={styles['add-table-button']} onClick={addTableHandler}>

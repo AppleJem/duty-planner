@@ -1,46 +1,32 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { autofillActions } from '../../store/autofillSlice';
 
 import { backupActions } from '../../store/backupSlice';
 
 const NameCell = React.memo(function NameCell(props) {
     const dispatch = useDispatch();
     const activeName = useSelector(state => state.namesConfig.activeName);
-    const undoInfo = useSelector(state => state.backupInfo.undoInfo);
-    const autofilledCells = useSelector(state => state.autofillInfo.filledCells);
-    const [name, setName] = useState('');
-    const [color, setColor] = useState('');
-
-    useEffect(() => {
-        if (props.cellId === undoInfo.cellId) {
-            setName(undoInfo.lastName);
-            setColor(undoInfo.lastColor);
-        }
-        let autofillInfo = autofilledCells[props.cellId];
-        if (autofillInfo) {
-            setName(autofillInfo.name);
-            setColor(autofillInfo.color);
-        }
-    }, [props.cellId, undoInfo, autofilledCells])
-
+    const currentSnapshot = useSelector(state => state.backupInfo.currentSnapshot);
 
     function updateNameHandler() {
-        setName(activeName.name);
-        setColor(activeName.color);
-        dispatch(backupActions.updateCellHistory({
+        console.log(currentSnapshot);
+        console.log(props.cellId);
+        dispatch(backupActions.updateHistory({
+            type: 'fillSingleCell',
             cellId: props.cellId,
-            change: {
-                name: activeName.name,
-                color: activeName.color
-            }
-        }))
-        dispatch(backupActions.updateHistoryList(props.cellId));
+            prevState: currentSnapshot[props.cellId]
+        }));
+        dispatch(backupActions.updateCurrentSnapshot({
+            type: 'singleCell',
+            cellId: props.cellId,
+            newName: activeName.name,
+            newColor: activeName.color
+        }));
     }
 
 
-    return <td style={{ backgroundColor: color }} onClick={updateNameHandler}>
-        {name}
+    return <td style={{ backgroundColor: currentSnapshot[props.cellId].color }} onClick={updateNameHandler}>
+        {currentSnapshot[props.cellId].name}
     </td>
 })
 

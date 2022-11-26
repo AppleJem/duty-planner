@@ -17,7 +17,8 @@ function AutofillMenu() {
 
     const tablesInfo = useSelector(state => state.tableSpecs.tables);
     const namelist = useSelector(state => state.namesConfig.names);
-    const cellList = useSelector(state => state.backupInfo.cells)
+    const currentSnapshot = useSelector(state => state.backupInfo.currentSnapshot);
+    const actionHistory = useSelector(state => state.backupInfo.actionHistory);
     const allNames = generateNames(namelist);
     const allHeadings = generateHeadings(tablesInfo);
 
@@ -26,40 +27,48 @@ function AutofillMenu() {
 
 
     function autofillTable() {
-        let snapshot = getSnapshot(cellList);
-        console.log(snapshot);
+        let snapshot = { ...currentSnapshot };
         let nameCounter = 0;
         let filledCells = {};
 
         for (let cell in snapshot) {
-            if (!finalHeadings.hasOwnProperty(cellList[cell]['heading'])) {
+            // if the cell's heading is not in the finalHeadings, then skip to the next cell
+            if (!finalHeadings.hasOwnProperty(snapshot[cell]['heading']) ||
+                //condition: the cell that we're targeting has no name and no color.
+                (snapshot[cell].name !== '' && snapshot[cell].color !== '')) {
                 continue;
             }
             while (!finalNames[nameCounter]) {
-                nameCounter+=1;
-                nameCounter = nameCounter % Object.keys(allNames).length;
+                if (nameCounter < Object.keys(allNames).length) {
+                    nameCounter += 1;
+                } else {
+                    nameCounter = nameCounter % Object.keys(allNames).length;
+                }
             }
-            //condition: the cell that we're targeting has no name and no color.
-            if (snapshot[cell].name === '' && snapshot[cell].color === '') {
-                console.log(cell);
-                console.log(finalNames[nameCounter]);
-                filledCells[cell] = { name: finalNames[nameCounter].name, color: finalNames[nameCounter].color };
-                dispatch(backupActions.updateCellHistory({
-                    cellId: cell,
-                    change: {
-                        name: finalNames[nameCounter].name,
-                        color: finalNames[nameCounter].color
-                    }
-                }))
-                nameCounter += 1;
-            }
+            console.log(cell);
+            console.log(nameCounter);
+            snapshot[cell] = { name: finalNames[nameCounter].name, color: finalNames[nameCounter].color };
+            // dispatch(backupActions.updateCellHistory({
+            //     cellId: cell,
+            //     change: {
+            //         name: finalNames[nameCounter].name,
+            //         color: finalNames[nameCounter].color
+            //     }
+            // }))
+            nameCounter += 1;
         };
-        dispatch(autofillActions.setFilledCells(filledCells));
+        dispatch(backupActions.updateHistory({
+            type: 'autofillAll',
+            prevState: currentSnapshot
+        }))
+        dispatch(backupActions.updateCurrentSnapshot({
+            type: 'allCells',
+            newState: snapshot
+        }));
     }
 
     function autofillHandler() {
         console.log('activate button clicked');
-        dispatch(backupActions.takeSnapShot());
         autofillTable();
 
     }
@@ -90,11 +99,8 @@ function AutofillMenu() {
     }
 
     function checkData() {
-        console.log(finalNames);
-        console.log(tablesInfo);
-        console.log(finalHeadings);
-        console.log(cellList);
-        console.log(allNames);
+        console.log(currentSnapshot);
+        console.log(actionHistory);
     }
 
     return <section className={`${styles['autofill-menu']}`}>

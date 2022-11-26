@@ -8,9 +8,26 @@ const backupSlice = createSlice({
         cells: {},
         undoInfo: {},
         snapshot: {},
-
+        currentSnapshot: {},
     },
     reducers: {
+        updateCurrentSnapshot: (state, action) => {
+            console.log(action.payload);
+            switch (action.payload.type) {
+                case 'singleCell':
+                    state.currentSnapshot[action.payload.cellId].name = action.payload.newName;
+                    state.currentSnapshot[action.payload.cellId].color = action.payload.newColor;
+                    break;
+                case 'allCells':
+                    state.currentSnapshot = action.payload.newState;
+                    break;
+                case 'newTable':
+                    state.currentSnapshot = {
+                        ...state.currentSnapshot,
+                        ...action.payload.newTable
+                    }
+            }
+        },
         updateHistory: (state, action) => {
             state.actionHistory.push(action.payload);
         },
@@ -26,19 +43,28 @@ const backupSlice = createSlice({
         updateCellHistory: (state, action) => {
             state.cells[action.payload.cellId].history.push(action.payload.change);
         },
-        updateHistoryList: (state, action) => {
-            state.actionHistory.push(action.payload);
-        },
         undo: (state) => {
+            // if (state.actionHistory.length) {
+            //     let lastChangedCell = state.actionHistory.slice(-1);
+            //     state.undoInfo = {
+            //         cellId: lastChangedCell[0],
+            //         lastColor: state.cells[lastChangedCell[0]].history.slice(-2, -1)[0].color || 'transparent',
+            //         lastName: state.cells[lastChangedCell[0]].history.slice(-2, -1)[0].name || '',
+            //     };
+            //     state.actionHistory.pop();
+            //     state.cells[lastChangedCell[0]].history.pop();
+            // }
             if (state.actionHistory.length) {
-                let lastChangedCell = state.actionHistory.slice(-1);
-                state.undoInfo = {
-                    cellId: lastChangedCell[0],
-                    lastColor: state.cells[lastChangedCell[0]].history.slice(-2, -1)[0].color || 'transparent',
-                    lastName: state.cells[lastChangedCell[0]].history.slice(-2, -1)[0].name || '',
-                };
+                let lastAction = state.actionHistory.slice(-1)[0];
+                switch (lastAction.type) {
+                    case 'fillSingleCell':
+                        state.currentSnapshot[lastAction.cellId] = lastAction.prevState;
+                        break;
+                    case 'autofillAll':
+                        state.currentSnapshot = lastAction.prevState;
+                        break;
+                }
                 state.actionHistory.pop();
-                state.cells[lastChangedCell[0]].history.pop();
             }
         },
         takeSnapShot: (state) => {
@@ -53,7 +79,7 @@ const backupSlice = createSlice({
             }
             console.log(snapshotObj);
             state.snapshot = snapshotObj;
-        }
+        },
     }
 })
 
