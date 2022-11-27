@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux"
 
 import styles from './StartNameSelector.module.css';
+import classes from './AutofillMenu.module.css';
 
 function StartNameSelector(props) {
     const optionsArr = Object.keys(props.finalNames).map(nameIndex => {
@@ -14,9 +15,9 @@ function StartNameSelector(props) {
         props.updateStartNameCounter(event.target.value);
     }
 
-    return <div>
-        Start with name
-        <select onChange={updateStartNameCounter} name="startName">
+    return <div className={classes['input-container']}>
+        <label htmlFor="startNameSelect" className={styles['select-title']}>Start with name</label>
+        <select id="startNameSelect" className={styles['select']} onChange={updateStartNameCounter} name="startName">
             {optionsArr}
         </select>
     </div>

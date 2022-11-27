@@ -113,14 +113,18 @@ function AutofillMenu() {
 
     return <section className={`${styles['autofill-menu']}`}>
         <p className={`${styles.title}`}>Autofill Menu</p>
-        <p>Fill up all empty slots with the name list.<br />Please specify the columns, tables, and names to exclude</p>
-        <NameCheckBoxInput updateFinalNames={updateFinalNames} finalNames={finalNames} allNames={allNames} />
+        <p className={`${styles.subtitle}`}>Fill up all empty slots with the name list.</p>
         <ColCheckBoxInput updateFinalHeadings={updateFinalHeadings} finalHeadings={finalHeadings} allHeadings={allHeadings} />
+        <NameCheckBoxInput updateFinalNames={updateFinalNames} finalNames={finalNames} allNames={allNames} />
         <StartNameSelector updateStartNameCounter={updateStartNameCounter} finalNames={finalNames} />
-        <button onClick={autofillHandler}>
-            Autofill
-        </button>
-        <button onClick={checkData}>Data Check</button>
+        <div className={`${styles['button-container']}`}>
+            <button className={styles['autofill-button']} onClick={autofillHandler}>
+                Autofill
+            </button>
+            <button onClick={checkData}>Data Check</button>
+        </div>
+
+
     </section>
 
 }

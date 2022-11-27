@@ -62,6 +62,9 @@ function TableMenu() {
         {timingInputMethod === 'auto' && <SlotsInput />}
 
         <AddTableButton />
+        <footer className={styles['table-menu-footer']}>
+            Version 1.6
+        </footer>
 
     </aside>
 

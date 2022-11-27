@@ -16,7 +16,6 @@
 }
 
 .form-control textarea {
-    margin-top:1rem;
     box-sizing: border-box;
     width:60vw;
     border:unset;

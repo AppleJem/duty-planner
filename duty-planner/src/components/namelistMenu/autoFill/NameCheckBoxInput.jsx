@@ -1,5 +1,6 @@
 
 import styles from './CheckBoxInput.module.css';
+import classes from './AutofillMenu.module.css';
 import CheckBox from './CheckBox';
 
 function NameCheckBoxInput(props) {
@@ -17,9 +18,11 @@ function NameCheckBoxInput(props) {
             }} key={`${person}_${props.allNames[person].name}`} label={props.allNames[person].name} />
         )
     }
-    return <div>
-        <p>Exclude Names</p>
-        {checkboxes}
+    return <div className={classes["input-container"]}>
+        <p className={styles["checkboxes-title"]}>Exclude Names</p>
+        <div className={styles["checkboxes-container"]}>
+            {checkboxes}
+        </div>
     </div>
 }
 
