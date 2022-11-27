@@ -32,7 +32,8 @@ function NamesInput() {
                 color: `hsl(${hue}deg, ${sat}%, ${light}%)`
             }
         })
-        dispatch(nameActions.setNames(coloredNames))
+        dispatch(nameActions.setNames(coloredNames));
+        dispatch(menuActions.setSubMenu('namelist'));
         showNameList();
     }
 

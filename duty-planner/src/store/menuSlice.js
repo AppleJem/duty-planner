@@ -5,7 +5,7 @@ const menuSlice = createSlice({
     initialState: {
         activeMenu: "none",
         showNamelist: false,
-        menuShowing: "nameInput", //nameInput, namelist, autofill
+        subMenuShowing: "nameInput", //nameInput, namelist, autofill
         headingsInput: 'S1, S2, P1, P2',
         timingsInput: '',
         slotsInput: 6,
@@ -19,6 +19,7 @@ const menuSlice = createSlice({
     reducers: {
         setActiveMenu: (state, action) => {
             //the activeMenu is either "table" or "namelist" or "none"
+            console.log(action.payload);
             state.activeMenu = action.payload;
         },
         toggleNamelist: (state) => {
@@ -60,8 +61,8 @@ const menuSlice = createSlice({
             
 
         },
-        setMenuShowing: (state, action) => {
-            state.menuShowing = action.payload;
+        setSubMenu: (state, action) => {
+            state.subMenuShowing = action.payload;
         }
     }
 })

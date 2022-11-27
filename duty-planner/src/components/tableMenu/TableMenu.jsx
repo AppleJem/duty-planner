@@ -63,7 +63,7 @@ function TableMenu() {
 
         <AddTableButton />
         <footer className={styles['table-menu-footer']}>
-            Version 1.6
+            Version 1.5
         </footer>
 
     </aside>

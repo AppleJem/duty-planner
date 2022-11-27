@@ -11,24 +11,24 @@ import AutofillMenu from './autoFill/AutofillMenu';
 
 function NamelistMenu() {
     const dispatch = useDispatch();
-    const menuShowing = useSelector(state => state.menuStatus.menuShowing);
+    const subMenuShowing = useSelector(state => state.menuStatus.subMenuShowing);
 
 
     function changeMenu(menu) {
-        dispatch(menuActions.setMenuShowing(menu));
+        dispatch(menuActions.setSubMenu(menu));
     }
 
 
     return <div className={styles['outer-container']}>
         <section className={styles['name-menu']}>
             <div className={styles['namelist-toggle']}>
-                <button className={`${menuShowing==="nameInput" && styles.active} ${styles.button}`} onClick={() => changeMenu('nameInput')}>Edit</button>
-                <button className={`${menuShowing==="namelist" && styles.active} ${styles.button}`} onClick={() => changeMenu('namelist')}>Name<br/>list</button>
-                <button className={`${menuShowing==="autofill" && styles.active} ${styles.button}`} onClick={() => changeMenu('autofill')}>Auto<br/>fill</button>
+                <button className={`${subMenuShowing==="nameInput" && styles.active} ${styles.button}`} onClick={() => changeMenu('nameInput')}>Edit</button>
+                <button className={`${subMenuShowing==="namelist" && styles.active} ${styles.button}`} onClick={() => changeMenu('namelist')}>Name<br/>list</button>
+                <button className={`${subMenuShowing==="autofill" && styles.active} ${styles.button}`} onClick={() => changeMenu('autofill')}>Auto<br/>fill</button>
             </div>
-            {menuShowing === "namelist" && <NameList />}
-            {menuShowing === "nameInput" && <NamesInput />}
-            {menuShowing === "autofill" && <AutofillMenu />}
+            {subMenuShowing === "namelist" && <NameList />}
+            {subMenuShowing === "nameInput" && <NamesInput />}
+            {subMenuShowing === "autofill" && <AutofillMenu />}
         </section>
     </div>
 

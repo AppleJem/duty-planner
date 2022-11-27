@@ -33,6 +33,11 @@ function AutofillMenu() {
         let nameCounter = startingNameCounter;
         let filledCells = {};
 
+        if (Object.keys(finalNames).length === 0 || Object.keys(finalHeadings).length === 0) {
+            console.log('allNames or allHeadings is empty');
+            return;
+        }
+
         for (let cell in snapshot) {
             // if the cell's heading is not in the finalHeadings, then skip to the next cell
             if (!finalHeadings.hasOwnProperty(snapshot[cell]['heading']) ||
@@ -106,7 +111,7 @@ function AutofillMenu() {
     }
 
     function checkData() {
-        console.log(currentSnapshot);
+        console.log(Object.keys(allNames).length);
         console.log(actionHistory);
         console.log(startingNameCounter);
     }
@@ -121,8 +126,8 @@ function AutofillMenu() {
             <button className={styles['autofill-button']} onClick={autofillHandler}>
                 Autofill
             </button>
-            <button onClick={checkData}>Data Check</button>
         </div>
+        <button onClick={checkData}>data check</button>
 
 
     </section>
