@@ -7,6 +7,7 @@ import TableRow from './TableRow';
 import Cross from '../../assets/iconComponents/Cross';
 import TrashIcon from '../../assets/iconComponents/TrashIcon'
 import { tableActions } from '../../store/tableSlice';
+import { backupActions } from '../../store/backupSlice';
 
 function DayTable(props) {
     console.log(`${props.tableId} is rerendering`);
@@ -36,6 +37,11 @@ function DayTable(props) {
 
     function deleteTableHandler() {
         dispatch(tableActions.removeTable(props.tableId));
+        dispatch(backupActions.updateCurrentSnapshot({
+            type: 'deleteTable',
+            tableId: props.tableId
+        }))
+        console.log(props.tableId);
     }
 
 

@@ -10,6 +10,7 @@ import ToggleButton from '../../ui/ToggleButton';
 import Cross from '../../../assets/iconComponents/Cross';
 import NameCheckBoxInput from './NameCheckBoxInput';
 import ColCheckBoxInput from './ColCheckBoxInput';
+import StartNameSelector from './StartNameSelector';
 import { generateHeadings, getSnapshot, generateNames } from './autoFillHelpers.js';
 
 function AutofillMenu() {
@@ -24,11 +25,12 @@ function AutofillMenu() {
 
     const [finalNames, setFinalNames] = useState(allNames);
     const [finalHeadings, setFinalHeadings] = useState(allHeadings);
+    const [startingNameCounter, setStartingNameCounter] = useState(0);
 
 
     function autofillTable() {
         let snapshot = { ...currentSnapshot };
-        let nameCounter = 0;
+        let nameCounter = startingNameCounter;
         let filledCells = {};
 
         for (let cell in snapshot) {
@@ -39,6 +41,7 @@ function AutofillMenu() {
                 continue;
             }
             while (!finalNames[nameCounter]) {
+                console.log(nameCounter);
                 if (nameCounter < Object.keys(allNames).length) {
                     nameCounter += 1;
                 } else {
@@ -98,9 +101,14 @@ function AutofillMenu() {
         })
     }
 
+    function updateStartNameCounter(nameCounter) {
+        setStartingNameCounter(Number(nameCounter));
+    }
+
     function checkData() {
         console.log(currentSnapshot);
         console.log(actionHistory);
+        console.log(startingNameCounter);
     }
 
     return <section className={`${styles['autofill-menu']}`}>
@@ -108,6 +116,7 @@ function AutofillMenu() {
         <p>Fill up all empty slots with the name list.<br />Please specify the columns, tables, and names to exclude</p>
         <NameCheckBoxInput updateFinalNames={updateFinalNames} finalNames={finalNames} allNames={allNames} />
         <ColCheckBoxInput updateFinalHeadings={updateFinalHeadings} finalHeadings={finalHeadings} allHeadings={allHeadings} />
+        <StartNameSelector updateStartNameCounter={updateStartNameCounter} finalNames={finalNames} />
         <button onClick={autofillHandler}>
             Autofill
         </button>

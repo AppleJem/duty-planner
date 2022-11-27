@@ -14,6 +14,22 @@ const backupSlice = createSlice({
         updateCurrentSnapshot: (state, action) => {
             console.log(action.payload);
             switch (action.payload.type) {
+                case 'newTable':
+                    state.currentSnapshot = {
+                        ...state.currentSnapshot,
+                        ...action.payload.newTable,
+                    };
+                    break;
+                case 'deleteTable':
+                    Object.keys(state.currentSnapshot).forEach(cellId => {
+                        // console.log(action.payload.tableId);
+                        // console.log(state.currentSnapshot[cellId].tableId);
+                        if (state.currentSnapshot[cellId].tableId === action.payload.tableId) {
+                            console.log('table deletion matched');
+                            delete state.currentSnapshot[cellId];
+                        }
+                    });
+                    break;
                 case 'singleCell':
                     state.currentSnapshot[action.payload.cellId].name = action.payload.newName;
                     state.currentSnapshot[action.payload.cellId].color = action.payload.newColor;
@@ -21,15 +37,14 @@ const backupSlice = createSlice({
                 case 'allCells':
                     state.currentSnapshot = action.payload.newState;
                     break;
-                case 'newTable':
-                    state.currentSnapshot = {
-                        ...state.currentSnapshot,
-                        ...action.payload.newTable
-                    }
+
             }
         },
         updateHistory: (state, action) => {
             state.actionHistory.push(action.payload);
+        },
+        deleteTable: (state, action) => {
+
         },
         addToCellList: (state, action) => {
             state.cells[action.payload.cellId] = {

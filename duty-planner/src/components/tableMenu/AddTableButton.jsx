@@ -77,17 +77,18 @@ function AddTableButton() {
         let newTable = {};
         for (let i = 0; i < timingsArr.length; i++) {
             for (let j = 0; j < headingsArr.length; j++) {
-                let cellId = `table${tableCount}_${i}_${j}`
+                let cellId = `table${tableCount}_${i}_${j}`;
                 newTable[cellId] = {
                     name: '',
                     color: '',
-                    heading: headingsArr[j]
+                    heading: headingsArr[j],
+                    tableId: `table${tableCount}`
                 }
             }
         }
         dispatch(backupActions.updateCurrentSnapshot({
             type: 'newTable',
-            newTable: newTable
+            newTable: newTable,
         }));
     }
 
