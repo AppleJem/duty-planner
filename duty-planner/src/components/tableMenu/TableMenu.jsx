@@ -13,6 +13,7 @@ import StartEndInput from './StartEndInput';
 import ToggleTimingInput from './ToggleTimingInput';
 
 import AddTableButton from './AddTableButton';
+import DownloadBackup from './saveFileSystem/DownloadBackup';
 
 function TableMenu() {
     const dispatch = useDispatch();
@@ -63,7 +64,10 @@ function TableMenu() {
 
         <AddTableButton />
         <footer className={styles['table-menu-footer']}>
-            Version 1.5
+            <div>
+                <DownloadBackup/>
+            </div>
+            <p>Version 1.5</p>
         </footer>
 
     </aside>

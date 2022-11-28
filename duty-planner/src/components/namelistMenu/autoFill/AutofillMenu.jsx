@@ -127,9 +127,6 @@ function AutofillMenu() {
                 Autofill
             </button>
         </div>
-        <button onClick={checkData}>data check</button>
-
-
     </section>
 
 }
