@@ -1,11 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
 
-import { tableActions } from "../../store/tableSlice";
-import { backupActions } from '../../store/backupSlice';
+import { tableActions } from "../../../store/tableSlice";
+import { backupActions } from '../../../store/backupSlice';
 
-import uuid from "react-uuid";
-
-import styles from './TableMenu.module.css';
+import styles from '../TableMenu.module.css';
 
 function AddTableButton() {
     const dispatch = useDispatch();

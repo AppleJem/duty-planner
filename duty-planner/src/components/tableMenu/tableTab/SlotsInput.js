@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useState, useRef } from 'react';
 
-import styles from './TableMenu.module.css'
-import { menuActions } from '../../store/menuSlice';
+import styles from '../TableMenu.module.css'
+import { menuActions } from '../../../store/menuSlice';
 
 
 function SlotsInput() {

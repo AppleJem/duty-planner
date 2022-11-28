@@ -6,29 +6,21 @@ import { tableActions } from '../../store/tableSlice';
 import { menuActions } from '../../store/menuSlice';
 
 import styles from "./TableMenu.module.css";
-import TimingsInput from './TimingsInput';
-import HeadingsInput from './HeadingsInput';
-import SlotsInput from './SlotsInput';
-import StartEndInput from './StartEndInput';
-import ToggleTimingInput from './ToggleTimingInput';
+import TimingsInput from './tableTab/TimingsInput';
+import HeadingsInput from './tableTab/HeadingsInput';
+import SlotsInput from './tableTab/SlotsInput';
+import StartEndInput from './tableTab/StartEndInput';
+import ToggleTimingInput from './tableTab/ToggleTimingInput';
 
-import AddTableButton from './AddTableButton';
-import DownloadBackup from './saveFileSystem/DownloadBackup';
+import AddTableButton from './tableTab/AddTableButton';
+import DownloadBackup from './backupTab/DownloadBackup';
+import LoadBackup from './backupTab/LoadBackup';
+import Footer from './backupTab/BackupTab';
 
 function TableMenu() {
     const dispatch = useDispatch();
     const { headingsInput, timingsInput, daysInput, slotsInput, startTimeInput, endTimeInput, timingInputMethod } = useSelector(state => state.menuStatus);
     const [tableClosing, setTableClosing] = useState(false);
-
-    function updateTableHandler() {
-        dispatch(tableActions.setTimings(timingsInput));
-        dispatch(tableActions.setNumberOfDays(daysInput));
-        dispatch(tableActions.setHeadings(headingsInput));
-        dispatch(tableActions.setSlots(slotsInput));
-        dispatch(tableActions.setStartTime(startTimeInput));
-        dispatch(tableActions.setEndTime(endTimeInput));
-        dispatch(menuActions.setActiveMenu('none'));
-    }
 
     function hideTableMenu() {
         setTableClosing(true);
@@ -63,12 +55,7 @@ function TableMenu() {
         {timingInputMethod === 'auto' && <SlotsInput />}
 
         <AddTableButton />
-        <footer className={styles['table-menu-footer']}>
-            <div>
-                <DownloadBackup/>
-            </div>
-            <p>Version 1.5</p>
-        </footer>
+        <Footer />
 
     </aside>
 

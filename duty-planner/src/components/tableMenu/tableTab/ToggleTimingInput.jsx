@@ -1,9 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux';
 
-import styles from './TableMenu.module.css';
+import styles from '../TableMenu.module.css';
 import classes from './ToggleTimingInput.module.css';
-import { menuActions } from '../../store/menuSlice';
-import ToggleButton from '../ui/ToggleButton';
+import { menuActions } from '../../../store/menuSlice';
+import ToggleButton from '../../ui/ToggleButton';
 
 function ToggleTimingInput() {
     const dispatch = useDispatch();

@@ -135,13 +135,3 @@
     border: unset;
     border-radius: 0.7rem;
 }
-
-.table-menu-footer {
-    height:100%;
-    display:flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: flex-end;
-    margin: 0 0.5em 0.5em 0;
-    font-weight: 100;
-}

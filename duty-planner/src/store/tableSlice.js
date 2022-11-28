@@ -25,18 +25,6 @@ const tableSlice = createSlice({
             }
             state.days = action.payload;
         },
-        setHeadings: (state, action) => {
-            state.headingsInput = action.payload;
-        },
-        setSlots: (state, action) => {
-            state.slots = action.payload;
-        },
-        setStartTime: (state, action) => {
-            state.startTime = action.payload;
-        },
-        setEndTime: (state, action) => {
-            state.endTime = action.payload;
-        },
         setZoom: (state, action) => {
             state.zoom = action.payload;
         },
@@ -54,6 +42,10 @@ const tableSlice = createSlice({
         removeTable: (state, action) => {
             // state.tables.splice(action.payload , 1);
             delete state.tables[action.payload];
+        },
+        setAllTables: (state,action) => {
+            state.tables = action.payload.tablesInfo;
+            state.tableCount = action.payload.tableCount;
         }
 
     }
