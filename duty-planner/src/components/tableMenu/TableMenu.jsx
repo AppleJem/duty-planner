@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 
 import { menuActions } from '../../store/menuSlice';
 
@@ -10,11 +10,10 @@ import styles from "./TableMenu.module.css";
 
 function TableMenu() {
     const dispatch = useDispatch();
-    const { headingsInput, timingsInput, daysInput, slotsInput, startTimeInput, endTimeInput, timingInputMethod } = useSelector(state => state.menuStatus);
     const [tableClosing, setTableClosing] = useState(false);
     const [activeMenu, setActiveMenu] = useState("table-active"); //can be table or backup
 
-    function hideTableMenu() {
+    function hideSideMenu() {
         setTableClosing(true);
     }
 
@@ -46,7 +45,7 @@ function TableMenu() {
                     <span onTransitionEnd={stopPropagationHandler} className={styles['highlight-bar']}></span>
                 </div>
             </div>
-            <button onClick={hideTableMenu} className={`${styles['hide-button']}`}>
+            <button onClick={hideSideMenu} className={`${styles['hide-button']}`}>
                 {/* <img src={arrowLeft} alt="hide Sidebar menu" /> */}
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
                     <path d="M10 12.796V3.204L4.519 8 10 12.796zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753z" />

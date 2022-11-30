@@ -5,6 +5,7 @@ import styles from './BackupTab.module.css';
 import { tableActions } from "../../../store/tableSlice";
 import { backupActions } from "../../../store/backupSlice";
 import { nameActions } from "../../../store/nameSlice";
+import { menuActions } from "../../../store/menuSlice";
 
 function LoadBackup() {
     const dispatch = useDispatch();
@@ -32,6 +33,9 @@ function LoadBackup() {
             tableCount: backupData.tableCount
         }))
         dispatch(nameActions.setNames(backupData.namelist));
+        dispatch(menuActions.storeNames(backupData.namesInput));
+        dispatch(menuActions.storeTimings(backupData.timingsInput));
+        dispatch(menuActions.storeHeadings(backupData.headingsInput));
     }
     return <Fragment>
         <label htmlFor='backupUpload' className={styles['upload-file-label']}>

@@ -5,6 +5,9 @@ import styles from './BackupTab.module.css'
 function DownloadBackup() {
     const currentSnapshot = useSelector(state => state.backupInfo.currentSnapshot);
     const namelist = useSelector(state => state.namesConfig.names);
+    const namesInput = useSelector(state => state.menuStatus.namesInput);
+    const timingsInput = useSelector(state => state.menuStatus.timingsInput);
+    const headingsInput = useSelector(state => state.menuStatus.headingsInput);
     const tablesInfo = useSelector(state => state.tableSpecs.tables);
     const tableCount = useSelector(state => state.tableSpecs.tableCount);
 
@@ -14,6 +17,9 @@ function DownloadBackup() {
         downloadData['namelist'] = [...namelist];
         downloadData['tablesInfo'] = { ...tablesInfo };
         downloadData['tableCount'] = tableCount;
+        downloadData['namesInput'] = namesInput;
+        downloadData['timingsInput'] = timingsInput;
+        downloadData['headingsInput'] = headingsInput;
         console.log(downloadData);
         const jsonString = `data:text/json;chatset=utf-8,${encodeURIComponent(
             JSON.stringify(downloadData)
