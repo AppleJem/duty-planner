@@ -1,0 +1,90 @@
+.table-tab {
+    overflow-y:scroll;
+    display:flex;
+    flex-direction: column;
+}
+
+.form-control {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-control label, .form-control legend {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.form-control textarea {
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    border: unset;
+    border-radius: 0.5rem;
+    height: 6rem;
+    padding: 0.5rem;
+    background-color: var(--input-bg);
+    resize: vertical;
+}
+
+.slotcount-input input, .daycount-input input {
+    display: inline-block;
+    border: unset;
+    background-color: var(--input-bg);
+    width: 22.5%;
+    height: 3rem;
+    text-align: center;
+    font-size: 1.3rem;
+    border-radius: 0.5rem;
+}
+
+.daycount-input input {
+    margin: 0 0.8rem;
+}
+
+.daycount-input button {
+    border: unset;
+    background-color: var(--input-bg);
+    border-radius: 1000px;
+    text-align: center;
+    height: 2.8rem;
+    width: 2.8rem;
+}
+
+.form-control textarea::placeholder, .form-control input::placeholder {
+    color: #828282;
+}
+
+.form-control input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.update-button-container {
+    align-self: center;
+}
+
+.update-button {
+    display: inline-block;
+    padding: 0.5rem 0.7rem;
+    border-radius: 0.6rem;
+    margin-bottom: 3rem;
+    border: unset;
+    background-color: var(--accent-light);
+}
+
+.update-button svg {
+    stroke: var(--input-bg);
+}
+
+.add-table-button {
+    display: inline-block;
+    margin: 1rem auto;
+    padding: 1rem;
+    background-color: var(--accent);
+    color: var(--nav);
+    font-weight: 600;
+    border: unset;
+    border-radius: 0.7rem;
+}

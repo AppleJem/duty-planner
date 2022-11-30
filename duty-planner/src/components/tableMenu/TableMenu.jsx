@@ -2,28 +2,33 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { tableActions } from '../../store/tableSlice';
 import { menuActions } from '../../store/menuSlice';
 
+import TableTab from './tableTab/TableTab';
+import BackupTab from './backupTab/BackupTab';
 import styles from "./TableMenu.module.css";
-import TimingsInput from './tableTab/TimingsInput';
-import HeadingsInput from './tableTab/HeadingsInput';
-import SlotsInput from './tableTab/SlotsInput';
-import StartEndInput from './tableTab/StartEndInput';
-import ToggleTimingInput from './tableTab/ToggleTimingInput';
-
-import AddTableButton from './tableTab/AddTableButton';
-import DownloadBackup from './backupTab/DownloadBackup';
-import LoadBackup from './backupTab/LoadBackup';
-import Footer from './backupTab/BackupTab';
 
 function TableMenu() {
     const dispatch = useDispatch();
     const { headingsInput, timingsInput, daysInput, slotsInput, startTimeInput, endTimeInput, timingInputMethod } = useSelector(state => state.menuStatus);
     const [tableClosing, setTableClosing] = useState(false);
+    const [activeMenu, setActiveMenu] = useState("table-active"); //can be table or backup
 
     function hideTableMenu() {
         setTableClosing(true);
+    }
+
+    function showTableMenu() {
+        console.log("set menu")
+        setActiveMenu("table-active");
+    }
+
+    function showBackupMenu() {
+        setActiveMenu("backup-active");
+    }
+
+    function stopPropagationHandler(event) {
+        event.stopPropagation();
     }
 
     function closeTableMenu() {
@@ -31,33 +36,29 @@ function TableMenu() {
     }
 
     return <aside onTransitionEnd={closeTableMenu} className={`${styles['table-container']} ${tableClosing && styles['closing']}`}>
-        <div className={styles['title-bar']}>
-            <h1 className={styles['menu-title']}>Table<br /> Customization</h1>
+        <section className={styles['title-bar']}>
+            <div className={`${styles['tab-group']} ${styles[activeMenu]}`}>
+                <div className={styles['tab-text-container']}>
+                    <span onTransitionEnd={stopPropagationHandler} onClick={showTableMenu} className={`${styles['menu-tab']}`}>Table</span>
+                    <span onTransitionEnd={stopPropagationHandler} onClick={showBackupMenu} className={`${styles['menu-tab']}`}>Backup</span>
+                </div>
+                <div className={styles['tab-bar-container']}>
+                    <span onTransitionEnd={stopPropagationHandler} className={styles['highlight-bar']}></span>
+                </div>
+            </div>
             <button onClick={hideTableMenu} className={`${styles['hide-button']}`}>
                 {/* <img src={arrowLeft} alt="hide Sidebar menu" /> */}
-                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" className="bi bi-caret-left" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
                     <path d="M10 12.796V3.204L4.519 8 10 12.796zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753z" />
                 </svg>
             </button>
-        </div>
-        <HeadingsInput updateHeadingInputs={(newHeadingInputs) => {
-            // setHeadingInputs(newHeadingInputs);
-        }} />
+        </section>
 
-        <ToggleTimingInput />
-        {timingInputMethod === 'manual' &&
-            <TimingsInput updateTimingInputs={(newTimingInputs) => {
-                //whenever the timings input changes, it is reflected in the state
-                // setTimingInputs(newTimingInputs);
-            }} />}
+        {activeMenu === 'table-active' && <TableTab />}
+        {activeMenu === 'backup-active' && <BackupTab />}
 
-        {timingInputMethod === 'auto' && <StartEndInput />}
-        {timingInputMethod === 'auto' && <SlotsInput />}
 
-        <AddTableButton />
-        <Footer />
-
-    </aside>
+    </aside >
 
 
 

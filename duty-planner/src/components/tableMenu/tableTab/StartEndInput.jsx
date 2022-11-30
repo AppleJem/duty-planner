@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 
 import { menuActions } from "../../../store/menuSlice";
-import styles from '../TableMenu.module.css';
+import styles from './TableTab.module.css';
 import classes from './StartEndInput.module.css';
 
 function StartEndInput() {

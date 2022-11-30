@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import styles from '../TableMenu.module.css';
+import styles from './TableTab.module.css';
 import { menuActions } from '../../../store/menuSlice';
 
 function HeadingsInput(props) {

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { tableActions } from "../../../store/tableSlice";
 import { backupActions } from '../../../store/backupSlice';
 
-import styles from '../TableMenu.module.css';
+import styles from './TableTab.module.css';
 
 function AddTableButton() {
     const dispatch = useDispatch();
