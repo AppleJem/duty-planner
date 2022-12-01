@@ -25,7 +25,7 @@ function AutofillMenu() {
 
 
     function autofillTable() {
-        let snapshot = { ...currentSnapshot };
+        let snapshot = JSON.parse(JSON.stringify(currentSnapshot));
         let nameCounter = startingNameCounter;
         let filledCells = {};
 
@@ -34,10 +34,10 @@ function AutofillMenu() {
         }
 
         for (let cell in snapshot) {
-            // if the cell's heading is not in the finalHeadings, then skip to the next cell
+            // if the cell's heading is not in the finalHeadings OR the cell that we're targeting has a name or a color.
             if (!finalHeadings.hasOwnProperty(snapshot[cell]['heading']) ||
-                //condition: the cell that we're targeting has no name and no color.
-                (snapshot[cell].name !== '' && snapshot[cell].color !== '')) {
+                snapshot[cell].name !== '' ||
+                snapshot[cell].color !== '') {
                 continue;
             }
             while (!finalNames[nameCounter]) {
@@ -47,14 +47,9 @@ function AutofillMenu() {
                     nameCounter = nameCounter % Object.keys(allNames).length;
                 }
             }
-            snapshot[cell] = { name: finalNames[nameCounter].name, color: finalNames[nameCounter].color };
-            // dispatch(backupActions.updateCellHistory({
-            //     cellId: cell,
-            //     change: {
-            //         name: finalNames[nameCounter].name,
-            //         color: finalNames[nameCounter].color
-            //     }
-            // }))
+            // snapshot[cell] = { name: finalNames[nameCounter].name, color: finalNames[nameCounter].color };
+            snapshot[cell].name = finalNames[nameCounter].name;
+            snapshot[cell].color = finalNames[nameCounter].color;
             nameCounter += 1;
         };
         dispatch(backupActions.updateHistory({
@@ -101,7 +96,7 @@ function AutofillMenu() {
     }
 
     function checkData() {
-        console.log(Object.keys(allNames).length);
+        console.log(currentSnapshot);
         console.log(actionHistory);
         console.log(startingNameCounter);
     }

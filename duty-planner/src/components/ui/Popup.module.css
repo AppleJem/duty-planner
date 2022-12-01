@@ -8,10 +8,11 @@
     z-index: 15;
     left: 30%;
     top: 1rem;
-    width: calc(50% - (30% / 2) - (0.5rem / 2));
+    min-width: calc(50% - (30% / 2) - (0.5rem / 2));
 
-    background-color: black;
-    color: white;
+    background-color: var(--accent);
+    color: var(--table-bg);
+    font-family: 'Sora', sans-serif;
 
     border-radius: 1rem;
     padding: 0.7rem 0.5rem;

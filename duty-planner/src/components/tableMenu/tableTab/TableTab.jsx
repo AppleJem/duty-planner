@@ -51,7 +51,7 @@ function TableTab() {
 
         <AddTableButton callPopup={callPopup} />
         {popupCounter ? <Popup onTransitionEnd={unmountPopupHandler} className={`${popupFading ? classes.fading : null}`} fadePopup={fadePopup}>
-            {popupCounter === 1 ? "Table added!" : `${popupCounter} Tables added!`}
+            {popupCounter === 1 ? "Table added!" : `${popupCounter} tables added!`}
         </Popup> : null}
 
     </section>
