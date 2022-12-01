@@ -1,12 +1,10 @@
 
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { menuActions } from '../../store/menuSlice';
 import styles from "./NamelistMenu.module.css";
 import NamesInput from './NamesInput';
 import NameList from './Namelist';
-import ToggleButton from '../ui/ToggleButton';
 import AutofillMenu from './autoFill/AutofillMenu';
 
 function NamelistMenu() {

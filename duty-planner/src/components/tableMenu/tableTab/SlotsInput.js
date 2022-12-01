@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useState, useRef } from 'react';
 
 import styles from './TableTab.module.css'
 import { menuActions } from '../../../store/menuSlice';

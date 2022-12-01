@@ -9,8 +9,6 @@ const NameCell = React.memo(function NameCell(props) {
     const currentSnapshot = useSelector(state => state.backupInfo.currentSnapshot);
 
     function updateNameHandler() {
-        console.log(currentSnapshot);
-        console.log(props.cellId);
         dispatch(backupActions.updateHistory({
             type: 'fillSingleCell',
             cellId: props.cellId,

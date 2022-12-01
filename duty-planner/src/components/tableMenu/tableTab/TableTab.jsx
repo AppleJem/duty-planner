@@ -1,10 +1,9 @@
 
-import { Fragment, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-
-import { menuActions } from '../../../store/menuSlice';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import styles from "./TableTab.module.css";
+import classes from '../../ui/Popup.module.css'
 import TimingsInput from './TimingsInput';
 import HeadingsInput from './HeadingsInput';
 import SlotsInput from './SlotsInput';
@@ -12,10 +11,28 @@ import StartEndInput from './StartEndInput';
 import ToggleTimingInput from './ToggleTimingInput';
 
 import AddTableButton from './AddTableButton';
+import Popup from '../../ui/Popup';
 
 function TableTab() {
-    const dispatch = useDispatch();
     const { timingInputMethod } = useSelector(state => state.menuStatus);
+    const [popupCounter, setPopupCounter] = useState(0)
+    const [popupFading, setPopupFading] = useState(false)
+
+    function callPopup() {
+        setPopupCounter((prev) => {
+            return (prev + 1);
+        });
+    }
+
+    function fadePopup() {
+        setPopupFading(true);
+    }
+
+    function unmountPopupHandler(event) {
+        event.stopPropagation();
+        setPopupCounter(0);
+        setPopupFading(false);
+    }
 
     return <section className={styles['table-tab']}>
         <HeadingsInput updateHeadingInputs={(newHeadingInputs) => {
@@ -32,7 +49,11 @@ function TableTab() {
         {timingInputMethod === 'auto' && <StartEndInput />}
         {timingInputMethod === 'auto' && <SlotsInput />}
 
-        <AddTableButton />
+        <AddTableButton callPopup={callPopup} />
+        {popupCounter ? <Popup onTransitionEnd={unmountPopupHandler} className={`${popupFading ? classes.fading : null}`} fadePopup={fadePopup}>
+            {popupCounter === 1 ? "Table added!" : `${popupCounter} Tables added!`}
+        </Popup> : null}
+
     </section>
 
 }

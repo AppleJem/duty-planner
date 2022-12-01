@@ -37,14 +37,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 0.7rem 1.5rem 1.5rem;
+    padding: 1.5rem 1rem 1.5rem 0;
 }
 
 .tab-group {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    width: 100%
+    width: 100%;
+    margin: 0 0.5rem;
 }
 
 .tab-text-container {
@@ -106,6 +107,10 @@
 .hide-button {
     border: unset;
     background-color: transparent;
-    height: 2.7rem;
-    width: 2.7rem;
+    height: 2rem;
+    width: 2rem;
+}
+
+.hide-button svg {
+    fill: #6f7e89;
 }

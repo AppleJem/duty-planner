@@ -5,7 +5,7 @@ import { backupActions } from '../../../store/backupSlice';
 
 import styles from './TableTab.module.css';
 
-function AddTableButton() {
+function AddTableButton(props) {
     const dispatch = useDispatch();
 
     const tableCount = useSelector(state => state.tableSpecs.tableCount);
@@ -88,6 +88,8 @@ function AddTableButton() {
             type: 'newTable',
             newTable: newTable,
         }));
+
+        props.callPopup();
     }
 
     return <button className={styles['add-table-button']} onClick={addTableHandler}>

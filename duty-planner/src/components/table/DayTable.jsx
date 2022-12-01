@@ -10,7 +10,6 @@ import { tableActions } from '../../store/tableSlice';
 import { backupActions } from '../../store/backupSlice';
 
 function DayTable(props) {
-    console.log(`${props.tableId} is rerendering`);
 
     const dispatch = useDispatch();
     const storedTitle = useSelector(state => state.tableSpecs.tables[props.tableId].title);
@@ -20,7 +19,7 @@ function DayTable(props) {
 
     useEffect(() => {
         dispatch(tableActions.changeTableTitle({ id: props.tableId, newTitle: `Day ${props.dayNumber}` }))
-    }, [dispatch, props.dayNumber])
+    }, [dispatch, props.dayNumber, props.tableId])
 
     function titleChangeHandler(event) {
         dispatch(tableActions.changeTableTitle({ id: props.tableId, newTitle: event.target.value }))
@@ -41,7 +40,6 @@ function DayTable(props) {
             type: 'deleteTable',
             tableId: props.tableId
         }))
-        console.log(props.tableId);
     }
 
 

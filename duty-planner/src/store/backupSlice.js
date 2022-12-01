@@ -12,7 +12,6 @@ const backupSlice = createSlice({
     },
     reducers: {
         updateCurrentSnapshot: (state, action) => {
-            console.log(action.payload);
             switch (action.payload.type) {
                 case 'newTable':
                     state.currentSnapshot = {
@@ -22,10 +21,7 @@ const backupSlice = createSlice({
                     break;
                 case 'deleteTable':
                     Object.keys(state.currentSnapshot).forEach(cellId => {
-                        // console.log(action.payload.tableId);
-                        // console.log(state.currentSnapshot[cellId].tableId);
                         if (state.currentSnapshot[cellId].tableId === action.payload.tableId) {
-                            console.log('table deletion matched');
                             delete state.currentSnapshot[cellId];
                         }
                     });
@@ -37,6 +33,8 @@ const backupSlice = createSlice({
                 case 'allCells':
                     state.currentSnapshot = action.payload.newState;
                     break;
+                default :
+                    console.log('error, invalid update');
 
             }
         },
@@ -78,6 +76,8 @@ const backupSlice = createSlice({
                     case 'autofillAll':
                         state.currentSnapshot = lastAction.prevState;
                         break;
+                    default:
+                        console.log('error, invalid history item');
                 }
                 state.actionHistory.pop();
             }
@@ -92,7 +92,6 @@ const backupSlice = createSlice({
                     color: lastState.color
                 }
             }
-            console.log(snapshotObj);
             state.snapshot = snapshotObj;
         },
     }

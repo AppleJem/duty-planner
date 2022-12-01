@@ -22,8 +22,6 @@ function LoadBackup() {
     }
 
     function loadBackupHandler(event) {
-        console.log(backupData);
-        console.log(backupData.tablesInfo);
         dispatch(backupActions.updateCurrentSnapshot({
             type: 'allCells',
             newState: backupData.currentSnapshot,

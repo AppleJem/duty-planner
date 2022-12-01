@@ -10,13 +10,11 @@ function generateCellList(tables, tableCount) {
             }
         }
     }
-    console.log(cells);
     return cells;
 }
 
 //generate a snapshot of the table based on the cellList (taking each cell's latest state)
 function getSnapshot(cellList) {
-    let keysArr = Object.keys(cellList);
     let snapshotObj = {}
     for (let key in cellList) {
         let lastState = cellList[key].history.slice(-1)[0]
@@ -25,7 +23,6 @@ function getSnapshot(cellList) {
             color: lastState.color
         }
     }
-    console.log(snapshotObj);
     return snapshotObj;
 }
 

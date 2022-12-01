@@ -1,12 +1,4 @@
-/* .grid-container {
-    position:fixed;
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    align-content: end;
-    width:100vw;
-    height:100%;
-    z-index: 100;
-} */
+
 
 .navbar{
     background-color:var(--nav);
@@ -19,15 +11,17 @@
     height:3.4rem;
     z-index:8;
 }
+
 .table-menu-button {
     grid-column-end:2;
     background-color:transparent;
     border:unset;
     z-index:10;
-    height:2.7rem;
-    width:2.7rem;
+    height:3rem;
+    width:3rem;
     /* align-self:start; */
-    justify-self:start
+    justify-self:start;
+    margin-left: 0.2rem;
 }
 
 .zoom-selector {

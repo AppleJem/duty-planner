@@ -10,8 +10,6 @@
 
     border: unset;
     background-color:var(--accent);
-    
-
 
     margin-bottom: 16.6%;
     z-index:10;
@@ -24,4 +22,8 @@
 
 .namelist-menu-button:active {
     filter: brightness(0.9);
+}
+
+.namelist-menu-button.faded {
+    filter:saturate(0.4) brightness(0.7);
 }

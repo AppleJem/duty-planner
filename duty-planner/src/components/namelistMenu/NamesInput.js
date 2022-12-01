@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './NamesInput.module.css';
 import classes from './NamelistMenu.module.css';
@@ -6,7 +6,6 @@ import { menuActions } from '../../store/menuSlice';
 import { nameActions } from '../../store/nameSlice';
 
 function NamesInput() {
-    const namesInputRef = useRef();
     const dispatch = useDispatch();
     const storedNamesInput = useSelector(state => state.menuStatus.namesInput);
 

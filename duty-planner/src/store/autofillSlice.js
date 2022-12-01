@@ -15,11 +15,9 @@ const autofillSlice = createSlice({
         },
         setCurrentName: (state, action) => {
             state.currentName = action.payload;
-            console.log(action.payload);
         },
         setCurrentCell: (state, action) => {
             state.currentCell = action.payload;
-            console.log(action.payload);
         },
         autofillCells: (state, action) => {
             let nameCounter = 0;
@@ -32,22 +30,18 @@ const autofillSlice = createSlice({
                 // dispatch(autofillActions.setCurrentName(namelist[nameCounter]));
                 state.currentCell = cell;
                 state.currentName = namelist[nameCounter];
-                console.log(cell);
                 nameCounter += 1;
             };
         },
         setCellAndName: (state, action) => {
             state.currentCell = action.payload.cell;
             state.currentName = action.payload.name;
-            console.log(action.payload);
         },
         activate: (state) => {
             state.active = true;
-            console.log('activate');
         },
         deactivate: (state) => {
             state.active = false;
-            console.log('deactivate');
         },
         setFilledCells: (state, action) => {
             state.filledCells = action.payload;

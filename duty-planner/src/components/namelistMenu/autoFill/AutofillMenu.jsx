@@ -1,13 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 
-import { autofillActions } from '../../../store/autofillSlice';
 import { backupActions } from '../../../store/backupSlice';
 
 import styles from './AutofillMenu.module.css';
-import classes from '../NamelistMenu.module.css';
-import ToggleButton from '../../ui/ToggleButton';
-import Cross from '../../../assets/iconComponents/Cross';
 import NameCheckBoxInput from './NameCheckBoxInput';
 import ColCheckBoxInput from './ColCheckBoxInput';
 import StartNameSelector from './StartNameSelector';
@@ -34,7 +30,6 @@ function AutofillMenu() {
         let filledCells = {};
 
         if (Object.keys(finalNames).length === 0 || Object.keys(finalHeadings).length === 0) {
-            console.log('allNames or allHeadings is empty');
             return;
         }
 
@@ -46,15 +41,12 @@ function AutofillMenu() {
                 continue;
             }
             while (!finalNames[nameCounter]) {
-                console.log(nameCounter);
                 if (nameCounter < Object.keys(allNames).length) {
                     nameCounter += 1;
                 } else {
                     nameCounter = nameCounter % Object.keys(allNames).length;
                 }
             }
-            console.log(cell);
-            console.log(nameCounter);
             snapshot[cell] = { name: finalNames[nameCounter].name, color: finalNames[nameCounter].color };
             // dispatch(backupActions.updateCellHistory({
             //     cellId: cell,
@@ -76,7 +68,6 @@ function AutofillMenu() {
     }
 
     function autofillHandler() {
-        console.log('activate button clicked');
         autofillTable();
 
     }
@@ -101,7 +92,6 @@ function AutofillMenu() {
             } else {
                 copy[heading] = heading;
             }
-            console.log(copy);
             return copy;
         })
     }

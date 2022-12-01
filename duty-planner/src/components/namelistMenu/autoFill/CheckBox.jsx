@@ -6,9 +6,7 @@ function CheckBox(props) {
     const [active, setActive] = useState(false)
 
     function clickHandler () {
-        console.log('checkbox clicked');
         setActive((prev)=> {
-            console.log(prev);
             return !prev;
         });
         props.onClick();

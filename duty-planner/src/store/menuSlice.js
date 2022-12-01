@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const menuSlice = createSlice({
     name: 'menuStatus',
     initialState: {
-        activeMenu: "table", //table, namelist, none
+        activeMenu: "none", //table, namelist, none
         showNamelist: false,
         subMenuShowing: "nameInput", //nameInput, namelist, autofill
         headingsInput: 'S1, S2, P1, P2',
@@ -19,7 +19,6 @@ const menuSlice = createSlice({
     reducers: {
         setActiveMenu: (state, action) => {
             //the activeMenu is either "table" or "namelist" or "none"
-            console.log(action.payload);
             state.activeMenu = action.payload;
         },
         toggleNamelist: (state) => {

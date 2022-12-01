@@ -45,8 +45,6 @@ function App() {
         {activeMenu === 'table' && <TableMenu />}
         <Table />
       </div>
-
-
     </NameContextProvider>
 
 

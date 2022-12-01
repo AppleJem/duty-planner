@@ -1,5 +1,3 @@
-import { useSelector } from "react-redux"
-
 import styles from './StartNameSelector.module.css';
 import classes from './AutofillMenu.module.css';
 
