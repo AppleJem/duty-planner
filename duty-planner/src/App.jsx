@@ -11,11 +11,6 @@ import TableMenu from './components/tableMenu/TableMenu';
 import NamelistButton from './components/floatingButtons/NamelistButton';
 import Navbar from './components/navbar/Navbar';
 
-// Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
-
-import 'swiper/css';
-
 function App() {
   const activeMenu = useSelector(state => state.menuStatus.activeMenu)
 

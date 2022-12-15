@@ -92,7 +92,7 @@ function AddTableButton(props) {
         props.callPopup();
     }
 
-    return <button className={styles['add-table-button']} onClick={addTableHandler}>
+    return <button data-testid="add-table-button" className={styles['add-table-button']} onClick={addTableHandler}>
         Add Table
     </button>
 }

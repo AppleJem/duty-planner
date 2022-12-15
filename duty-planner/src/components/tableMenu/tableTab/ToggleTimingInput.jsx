@@ -28,7 +28,7 @@ function ToggleTimingInput() {
         {/* <div onClick={toggleTimingInput} className={`${classes['toggle-container']} ${timingInputMethod === 'manual' && classes['active']}`}>
             <div className={`${classes['toggle-button']} ${timingInputMethod === 'manual' && classes['active']}`}></div>
         </div> */}
-        <ToggleButton onTransitionEnd={preventPropagation} toggleFunction={toggleTimingInput} toggleState={timingInputMethod === 'manual'}/>
+        <ToggleButton className='toggle-button' onTransitionEnd={preventPropagation} toggleFunction={toggleTimingInput} toggleState={timingInputMethod === 'manual'}/>
     </div>
 }
 
