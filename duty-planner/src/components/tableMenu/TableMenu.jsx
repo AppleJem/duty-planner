@@ -1,17 +1,20 @@
 
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { createPortal } from 'react-dom';
 
 import { menuActions } from '../../store/menuSlice';
 
 import TableTab from './tableTab/TableTab';
 import BackupTab from './backupTab/BackupTab';
 import styles from "./TableMenu.module.css";
+import Modal from '../ui/Modal';
 
 function TableMenu() {
     const dispatch = useDispatch();
     const [tableClosing, setTableClosing] = useState(false);
     const [activeMenu, setActiveMenu] = useState("table-active"); //can be table or backup
+    const [showModal, setShowModal] = useState(false);
 
     function hideSideMenu() {
         setTableClosing(true);
@@ -58,8 +61,17 @@ function TableMenu() {
 
         {activeMenu === 'table-active' && <TableTab />}
         {activeMenu === 'backup-active' && <BackupTab />}
+        <p className="p-2">
+            <span className="">v1.1 - </span>
+            <span onClick={() => setShowModal(true)} className="underline">
+                Check Release Notes
+            </span>
+        </p>
 
-
+        {showModal && createPortal(
+            <Modal onClose={() => setShowModal(false)} />,
+            document.body
+        )}
     </aside >
 
 

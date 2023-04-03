@@ -13,7 +13,6 @@ import Navbar from './components/navbar/Navbar';
 
 function App() {
   const activeMenu = useSelector(state => state.menuStatus.activeMenu)
-
   useEffect(() => {
     const unloadCallback = (event) => {
       event.preventDefault();

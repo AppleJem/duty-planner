@@ -34,7 +34,7 @@ function TableTab() {
         setPopupFading(false);
     }
 
-    return <section className={styles['table-tab']}>
+    return <section className="overflow-y-scroll flex flex-col h-full">
         <HeadingsInput updateHeadingInputs={(newHeadingInputs) => {
             // setHeadingInputs(newHeadingInputs);
         }} />
