@@ -1,7 +1,7 @@
 .namelist-menu-button {
     grid-column-start: 6;
     grid-column-end: 7;
-    grid-row-start:-1;
+    grid-row-start: -1;
     width: 3.5rem;
     height: 3.5rem;
     overflow: hidden;
@@ -9,11 +9,11 @@
     border-radius: 1000px;
 
     border: unset;
-    background-color:var(--accent);
+    background-color: var(--accent);
 
     margin-bottom: 16.6%;
-    z-index:10;
-    box-shadow: 0 0.3rem 0.2rem var(--accent-shadow); 
+    z-index: 10;
+    box-shadow: 0 0.3rem 0.2rem var(--accent-shadow);
 }
 
 .namelist-menu-button:hover {
@@ -25,5 +25,12 @@
 }
 
 .namelist-menu-button.faded {
-    filter:saturate(0.4) brightness(0.7);
+    filter: saturate(0.4) brightness(0.7);
+}
+
+
+@media only screen and (min-width: var(--md-breakpoint)) {
+    .namelist-menu-button {
+        grid-row-start: 6;
+    }
 }
