@@ -62,7 +62,7 @@ function TableMenu() {
         {activeMenu === 'table-active' && <TableTab />}
         {activeMenu === 'backup-active' && <BackupTab />}
         <p className="p-2">
-            <span className="">v1.1 - </span>
+            <span className="">v1.6 - </span>
             <span onClick={() => setShowModal(true)} className="underline">
                 Check Release Notes
             </span>

@@ -11,7 +11,6 @@ function Modal(props) {
 
         document.getElementById('telegram-embed-container').appendChild(script);
         script.onload = function () {
-            console.log("the script has been loaded")
             setLoading(false);
         }
         script.src = "https://telegram.org/js/telegram-widget.js?22";
@@ -23,7 +22,6 @@ function Modal(props) {
 
     }, [])
 
-    console.log(document.getElementsByClassName("tgme_widget_message_text js-message_text"))
 
     return <div id="defaultModal" tabIndex="-1" aria-hidden="true" className="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full backdrop-blur-sm backdrop-brightness-50">
         <div className="relative w-full h-full max-w-2xl md:h-auto">
