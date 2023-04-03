@@ -32,19 +32,12 @@ function AddTableButton(props) {
         if (inputType === 'auto') {
             //Here we are using the number of slots and start/end time to generate the time slots for the table
             let startDate = new Date(2023, 0, 5, inputs.startTime.slice(0, 2), inputs.startTime.slice(3), 0);
-            let endDate = null;
-            console.log(startDate);
-            if (inputs.startTime === inputs.endTime) {
-                endDate = new Date(2023, 0, 5, inputs.endTime.slice(0, 2), inputs.endTime.slice(3), 0)
-            } else (
-                endDate = new Date(2023, 0, 5, inputs.endTime.slice(0, 2), inputs.startTime.slice(3), 0)
-            )
-            let slotLength = 0;
-            if (startDate.valueOf() === endDate.valueOf()) {
-                slotLength = (24 * 60 * 60 * 1000) / inputs.numberOfSlots
-            } else {
-                slotLength = Math.abs(startDate - endDate) / inputs.numberOfSlots;
+            let endDate = new Date(2023, 0, 5, inputs.endTime.slice(0, 2), inputs.endTime.slice(3), 0);
+
+            if (startDate >= endDate) {
+                endDate.setTime(endDate.getTime() + (24 * 60 * 60 * 1000));
             }
+            let slotLength = Math.abs(startDate - endDate) / inputs.numberOfSlots;
 
             for (let i = 0; i < inputs.numberOfSlots; i++) {
                 let timeSlotString = getTimeString(startDate);

@@ -14,8 +14,6 @@ function StartEndInput() {
 
     function updateEndTime(event) {
         dispatch(menuActions.storeEndTime(event.target.value));
-        console.log(event.target.value);
-        console.log(endTimeInput);
     }
     return <div className={`${styles['form-control']} + ${classes['outer-container']}`}>
         <div className={classes['timing-container']}>
