@@ -4,7 +4,7 @@ import LoadingSpinner from "./LoadingSpinner";
 
 function Modal(props) {
     const [loading, setLoading] = useState(true);
-    const messageLink = "https://t.me/LegionManpowerApp/5";
+    const messageLink = "https://t.me/LegionManpowerApp/12";
     const shortMessageLink = messageLink.slice(13);
     useEffect(() => {
         const script = document.createElement("script");

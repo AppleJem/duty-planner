@@ -28,8 +28,8 @@ const Table = React.memo(function () {
     }
 
     return <div style={{ zoom: `${zoom}%` }} id='table'
-        className="col-start-1 col-end-7  h-screen m-top
-        flex flex-col items-center overflow-scroll ">
+        className="col-start-1 col-end-7  h-[calc(100svh-3.5rem)]
+        flex flex-col justify-start self-start items-center overflow-scroll ">
         {Object.keys(tablesInfo).length === 0 ? <PromptTableMenu /> : tables}
     </div>
 })
