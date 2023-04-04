@@ -1,18 +1,4 @@
 .table-container {
-    grid-column-start: 1;
-    grid-column-end: 6;
-    grid-row-start: 1;
-    grid-row-end: span 12;
-    /* display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-auto-rows: min-content; */
-    /* grid-template-rows: 4rem repeat(10, 3rem); */
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    z-index: 10;
-    background-color: var(--nav);
-    box-shadow: 0.1rem 0 0.4rem var(--table-bg);
     animation: slide-in 0.1s ease-out;
     transition: transform 0.1s ease-out;
 }

@@ -7,10 +7,11 @@ import UndoButton from "./UndoButton";
 
 function Navbar() {
     const activeMenu = useSelector(state => state.menuStatus.activeMenu)
-    return <div className={styles['navbar']}>
+    return <div
+        className="bg-slate-700 col-start-1 col-span-6 grid items-center justify-items-center grid-cols-6 h-14">
         {activeMenu !== 'table' && <TableMenuButton />}
-        <ZoomSelector/>
-        <UndoButton/>
+        <ZoomSelector />
+        <UndoButton />
     </div>
 }
 

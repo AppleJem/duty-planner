@@ -36,7 +36,9 @@ function TableMenu() {
         dispatch(menuActions.setActiveMenu('none'));
     }
 
-    return <aside onTransitionEnd={closeTableMenu} className={`${styles['table-container']} ${tableClosing && styles['closing']}`}>
+    return <aside onTransitionEnd={closeTableMenu}
+        className={`fixed w-5/6 lg:w-1/4 h-full flex flex-col justify-start z-10 bg-slate-700 shadow-sm 
+        ${styles['table-container']} ${tableClosing && styles['closing']}`}>
         <section className={styles['title-bar']}>
             <div className={`${styles['tab-group']} ${styles[activeMenu]}`}>
                 <div className={styles['tab-text-container']}>

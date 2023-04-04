@@ -2,13 +2,12 @@
 
 .navbar{
     background-color:var(--nav);
-    position:absolute;
     width:100%;
     display:grid;
     align-items: center;
     justify-items: center;
     grid-template-columns: repeat(6,1fr);
-    height:3.4rem;
+    height:3.5rem;
     z-index:8;
 }
 

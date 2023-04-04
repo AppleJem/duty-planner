@@ -22,7 +22,9 @@ function NamelistButton() {
 
     }
 
-    return <button alt="namelist menu button" onClick={toggleNamelistMenu} className={`${styles['namelist-menu-button']} ${!tablesLength && styles.faded}`}>
+    return <button alt="namelist menu button" onClick={toggleNamelistMenu}
+        className={`absolute col-start-6 bottom-8 w-14 h-14 overflow-hidden p-4 rounded-full bg-yellow-500 z-10
+        ${tablesLength ? "": "brightness-50"}`}>
         {activeMenu === 'table' || activeMenu === 'none' ? <img src={penIcon} alt="Open namelist menu" /> : <img src={cross} alt="close namelist menu" />}
     </button>
 

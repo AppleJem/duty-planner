@@ -27,7 +27,9 @@ const Table = React.memo(function () {
         }
     }
 
-    return <div style={{ zoom: `${zoom}%` }} id='table' className={styles['tables-container']}>
+    return <div style={{ zoom: `${zoom}%` }} id='table'
+        className="col-start-1 col-end-7  h-screen m-top
+        flex flex-col items-center overflow-scroll ">
         {Object.keys(tablesInfo).length === 0 ? <PromptTableMenu /> : tables}
     </div>
 })

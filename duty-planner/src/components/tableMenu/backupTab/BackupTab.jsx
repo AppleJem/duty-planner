@@ -4,7 +4,7 @@ import LoadBackup from "./LoadBackup";
 import styles from './BackupTab.module.css';
 
 function BackupTab() {
-    return <section className={styles['backup-tab']}>
+    return <section className="overflow-y-scroll flex flex-col items-center h-full">
         <DownloadBackup />
         <p className={styles['divider']}>OR</p>
         <LoadBackup />

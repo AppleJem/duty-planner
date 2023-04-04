@@ -41,11 +41,12 @@ function NamesInput() {
     return <form onSubmit={formSubmitHandler} className={styles['form-control']}>
         <label className={classes.title} htmlFor='namesInput'>Input Duty Personnel Names</label>
         <textarea onChange={namesChangeHandler} autoComplete="on" cols='35' rows='5' id='namesInput' type="text" placeholder="Alpha, Bravo, Charlie,..." value={storedNamesInput}></textarea>
-        <button type="submit" className={styles['update-button']} >
+        <button type="submit" className="mt-6 bg-slate-500 px-4 py-3 rounded-lg" >
             {/* <img style={{fill:'red'}} src={checkmark} /> */}
-            <svg className={styles['update-button-icon']} width="30" height="33" viewBox="0 0 45 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+            {/* <svg className={styles['update-button-icon']} width="30" height="33" viewBox="0 0 45 33" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M3.01086 17.9421L16.1557 29.5931L41.9668 3.42574" strokeWidth="6" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
+            </svg> */}
+            Save
         </button>
     </form>
 }
